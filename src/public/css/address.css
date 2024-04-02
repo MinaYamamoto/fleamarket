@@ -1,0 +1,61 @@
+@media screen and (min-width: 769px) {
+    body {
+        height: 550px;
+        margin: 0;
+        font-family: "游ゴシック", "arial unicode ms", sans-serif;
+    }
+
+    .header__inner {
+        background-color: #000000;
+        display: flex;
+        align-items: center;
+        padding: 0 10px 0 10px;
+        height: 50px;
+    }
+
+    .address-title {
+        text-align: center;
+    }
+
+    .address-item {
+        width: 400px;
+        margin: 0 auto;
+    }
+
+    .address-item__header {
+        font-size: 15px;
+        padding-left: 5%;
+        margin: 30px 0 0 0;
+    }
+
+    .change-address {
+        text-align: center;
+    }
+
+    .change-address__txt {
+        width: 90%;
+        height: 20px;
+    }
+
+    .form__error {
+        padding-left: 5%;
+        color: #ff333f;
+    }
+
+    .form__button {
+        margin-top: 50px;
+        text-align: center;
+    }
+
+    .form__button-submit {
+        color: #fff;
+        background-color: #ff333f;
+        border: none;
+        border-radius: 3px;
+        font-size: 18px;
+        font-weight: 300;
+        height: 30px;
+        width: 90%;
+        cursor: pointer;
+    }
+}
