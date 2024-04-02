@@ -1,0 +1,146 @@
+@media screen and (min-width: 769px) {
+    .header__link {
+        display: flex;
+        justify-content: flex-end;
+        margin: 0 50px 0 auto;
+        width: 30%;
+    }
+
+    .header__link-logout {
+        border: none;
+        background-color: #000;
+        cursor: pointer;
+        color: #fff;
+    }
+
+    .admin {
+        margin-left: 30px;
+    }
+
+    .admin-tab {
+        display: flex;
+        margin-top: 20px;
+    }
+
+    .tab__button {
+        color: rgb(114, 113, 113);
+        background-color: #fff;
+        border: none;
+        text-decoration: none;
+        width: 130px;
+        font-size: 15px;
+        font-weight: bolder;
+        outline: none;
+    }
+
+    .tab__button.active {
+        color: #ff333f
+    }
+
+    .user {
+        margin-left: 30px;
+    }
+
+    .user__header {
+        font-size: 18px;
+        margin: 20px 0 0 60px;
+    }
+
+    .user-table {
+        margin: 10px auto;
+        width: 80%;
+        text-align: center;
+    }
+
+    .user-table__inner {
+        width: 100%;
+    }
+
+    .user-table__row {
+        border-bottom: 1px solid #a5a2a2;
+        height: 50px;
+    }
+
+    .delete-form__button-submit {
+        background-color: #ff333f;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 60px;
+        height: 30px;
+        outline: none;
+    }
+
+    .comment {
+        margin-left: 30px;
+    }
+
+    .comment__header {
+        font-size: 18px;
+        margin: 20px 0 0 60px;
+    }
+
+    .comment-table {
+        margin: 10px auto;
+        width: 80%;
+        text-align: center;
+    }
+
+    .comment-table__inner {
+        width: 100%;
+    }
+
+    .comment-table__row {
+        border-bottom: 1px solid #a5a2a2;
+        height: 50px;
+    }
+
+    .comment-table__item {
+        max-width: 200px;
+    }
+
+    .mail__header {
+        font-size: 18px;
+        margin: 20px 0 0 60px;
+    }
+
+    .form-group {
+        margin-top: 20px;
+    }
+
+    .form-group__label {
+        margin-left: 30%;
+    }
+
+    .form__group-content {
+        text-align: center;
+    }
+
+    .form-group__txt {
+        width: 40%;
+        height: 30px;
+    }
+
+    .form-group__txtarea {
+        width: 40%;
+    }
+
+    .form__button {
+        margin-top: 50px;
+        text-align: center;
+        padding-bottom: 40px;
+    }
+
+    .form__button-submit {
+        color: #fff;
+        background-color: #ff333f;
+        border: none;
+        border-radius: 3px;
+        font-size: 18px;
+        font-weight: 300;
+        height: 30px;
+        width: 30%;
+        cursor: pointer;
+    }
+}

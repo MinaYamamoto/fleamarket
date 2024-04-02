@@ -1,0 +1,122 @@
+@media screen and (min-width: 769px) {
+    .header__search {
+        display: flex;
+        margin-left: 15px;
+        width: 40%;
+    }
+
+    .search-form {
+        width: 95%;
+    }
+
+    .search-form__inner {
+        display: flex;
+        height: 30px;
+        padding-left: 50px;
+    }
+
+    .search-form__txt {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+        background-color: #fff;
+    }
+
+    .header__link {
+        display: flex;
+        justify-content: space-evenly;
+        margin: 0 0 0 auto;
+        width: 30%;
+    }
+
+    .header__link-logout {
+        border: none;
+        background-color: #000;
+        cursor: pointer;
+        color: #fff;
+    }
+
+    .header__link-item {
+        text-decoration: none;
+        color: #fff;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
+    .header__listing {
+        margin-right: 20px;
+    }
+
+    .header__listing-link {
+        display: inline-block;
+        text-decoration: none;
+        text-align: center;
+        background-color: #fff;
+        color: #000;
+        border-radius: 5px;
+        font-size: 15px;
+        cursor: pointer;
+        width: 80px;
+    }
+
+    .index__tabs {
+        display: flex;
+        margin-top: 20px;
+        margin-left: 30px;
+    }
+
+    .tab__link {
+        color: rgb(114, 113, 113);
+        background-color: #fff;
+        border: none;
+        text-decoration: none;
+        width: 100px;
+        font-size: 15px;
+        font-weight: bolder;
+        outline: none;
+    }
+
+    .tab__link.active {
+        color: #ff333f
+    }
+
+    .card__list {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0 5% 0 5%;
+    }
+
+    .card {
+        display: flex;
+        width: 18%;
+        flex-direction: column;
+        margin: 10px 10px 15px 10px;
+    }
+
+    .card__item {
+        height: 100%;
+    }
+
+    .card__img {
+        height: 100%;
+        width: 100%;
+    }
+
+    .card__txt {
+        margin: -30px 0 0 0;
+        height: 25px;
+        width: 40%;
+        background-color: rgba(121, 121, 121, 0.6);
+        border-radius: 0 10px 10px 0;
+    }
+
+    .card__item-price {
+        color: #fff;
+        font-weight: bolder;
+        margin: 0;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 768px) {}

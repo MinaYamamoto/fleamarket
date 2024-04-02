@@ -1,0 +1,222 @@
+@media screen and (min-width: 769px) {
+    .header__search {
+        display: flex;
+        margin-left: 15px;
+        width: 40%;
+    }
+
+    .search-form {
+        width: 95%;
+    }
+
+    .search-form__inner {
+        display: flex;
+        height: 30px;
+        padding-left: 50px;
+    }
+
+    .search-form__txt {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+        background-color: #fff;
+    }
+
+    .header__link {
+        display: flex;
+        justify-content: space-evenly;
+        margin: 0 0 0 auto;
+        width: 30%;
+    }
+
+    .header__link-logout {
+        border: none;
+        background-color: #000;
+        cursor: pointer;
+        color: #fff;
+    }
+
+    .header__link-item {
+        text-decoration: none;
+        color: #fff;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
+    .header__listing {
+        margin-right: 20px;
+    }
+
+    .header__listing-link {
+        display: inline-block;
+        text-decoration: none;
+        text-align: center;
+        background-color: #fff;
+        color: #000;
+        border-radius: 5px;
+        font-size: 15px;
+        cursor: pointer;
+        width: 80px;
+    }
+
+    .purchase {
+        display: flex;
+    }
+
+    .detail {
+        width: 60%;
+        margin-top: 30px;
+    }
+
+    .detail__flex {
+        display: flex;
+    }
+
+    .img {
+        width: 50%;
+    }
+
+    .img__inner {
+        width: 60%;
+        margin-top: 5%;
+        margin-left: 20%;
+    }
+
+    .img__item {
+        width: 100%;
+    }
+
+    .detail__explanation {
+        width: 50%;
+        margin-left: 5%;
+    }
+
+    .detail__item {
+        margin-top: 30px;
+    }
+
+    .detail__item-name {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .detail__item-price {
+        font-size: 15px;
+        padding: 10px 0 5px 0;
+    }
+
+    .pay__flex {
+        display: flex;
+        margin-left: 10%;
+    }
+
+    .pay__ttl {
+        width: 120px;
+    }
+
+    .pay__heading {
+        font-size: 18px;
+    }
+
+    .pay__link {
+        margin: auto 0;
+        margin-left: 50%;
+    }
+
+    .pay-change__link {
+        text-decoration: none;
+        color: rgb(0, 153, 255)
+    }
+
+    .address__flex {
+        display: flex;
+        margin-top: 50px;
+        margin-left: 10%;
+    }
+
+    .address__ttl {
+        width: 120px;
+    }
+
+    .address__heading {
+        font-size: 18px;
+    }
+
+    .address__link {
+        margin: auto 0;
+        margin-left: 50%;
+    }
+
+    .address-change__link {
+        padding: 0;
+        border: none;
+        background-color: #fff;
+        font-size: 16px;
+        font-family: "游ゴシック", "arial unicode ms", sans-serif;
+        color: rgb(0, 153, 255)
+    }
+
+    .shipping-address__post-code {
+        margin-left: 10%;
+        margin-bottom: 5px;
+        font-size: 15px;
+    }
+
+    .shipping-address__address {
+        margin-left: 10%;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .shipping-address__building {
+        margin-left: 10%;
+        margin-top: 5px;
+    }
+
+    .line {
+        margin-top: 40px;
+        border: solid 1px;
+    }
+
+    .pay__detail {
+        margin: 50px 0 30px 20px;
+    }
+
+    .pay__detail-ttl {
+        width: 100px;
+    }
+
+    .pay__detail-item {
+        display: flex;
+    }
+
+    .item__price {
+        margin-left: 40px;
+    }
+
+    .pay__price {
+        margin-left: 40px;
+    }
+
+    .method__payment {
+        margin-left: 40px;
+    }
+
+    .form__button {
+        margin-top: 40px;
+    }
+
+    .form__button-submit {
+        color: #fff;
+        background-color: #ff333f;
+        border: none;
+        border-radius: 3px;
+        font-size: 18px;
+        font-weight: 300;
+        height: 30px;
+        width: 300px;
+        cursor: pointer;
+    }
+
+}
