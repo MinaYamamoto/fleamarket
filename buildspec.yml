@@ -3,17 +3,19 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      java: corretto11
+      php: 7.4
+      nodejs: 12
   pre_build:
     commands:
-      - echo Nothing to do in the pre_build phase...
+      - echo "pre-build"
+      - aws ssm get-parameter --with-decryption --name .env.production --query Parameter.Value | sed -e 's/^"//' -e 's/"$//' -e 's/\\\"/\"/g' | awk '{gsub(/\\n/,"\n")}1' > .env
   build:
     commands:
-      - echo Build started on `date`
-      - mvn install
-  post_build:
-    commands:
-      - echo Build completed on `date`
+      - echo "build"
+      - composer install
+      - npm install
+      - npm run prod
+
 artifacts:
   files:
-    - target/messageUtil-1.0.jar
+    - "**/*"
