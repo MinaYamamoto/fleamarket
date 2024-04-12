@@ -8,6 +8,7 @@ use App\Models\Item;
 use App\Models\Mylist;
 use App\Models\Comment;
 use App\Models\Profile;
+use App\Http\Requests\CommentRequest;
 
 class CommentController extends Controller
 {
@@ -29,14 +30,15 @@ class CommentController extends Controller
         return view('comment',compact('item','mylists','comments','profile'));
     }
 
-    public function store(Request $request) {
+    public function store(CommentRequest $request) {
         $newComment = $request->only(['user_id', 'item_id', 'comment']);
         Comment::create($newComment);
         return back();
     }
 
     public function adminindex() {
-        return view('admin/admin');
+        $comments = Comment::all();
+        return view('admin/admin', compact('comments'));
     }
 
     public function admindestroy() {

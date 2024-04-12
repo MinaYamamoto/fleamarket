@@ -19,11 +19,11 @@
         <form action="/purchase/address/{{optional(auth()->user())->id}}" method="post">
             @method('PATCH')
             @csrf
-            <div class="address-item">
-                <div class="address-item__inner">
+            <div class="address-item__inner">
+                <div class="address-item">
                     <h3 class="address-item__header">郵便番号</h3>
                     <div class="change-address">
-                        <input class="change-address__txt" type="txt" name="post_code" value="{{old('post_code')}}">
+                        <input class="change-address__txt" type="txt" name="post_code" value="{{$profile->post_code}}">
                     </div>
                     <div class="form__error">
                         @error('post_code')
@@ -34,7 +34,7 @@
                 <div class="address-item">
                     <h3 class="address-item__header">住所</h3>
                     <div class="change-address">
-                        <input class="change-address__txt" type="txt" name="address" value="{{old('address')}}">
+                        <input class="change-address__txt" type="txt" name="address" value="{{$profile->address}}">
                     </div>
                     <div class="form__error">
                         @error('address')
@@ -45,7 +45,7 @@
                 <div class="address-item">
                     <h3 class="address-item__header">建物名</h3>
                     <div class="change-address">
-                        <input class="change-address__txt" type="txt" name="building" value="{{old('building')}}">
+                        <input class="change-address__txt" type="txt" name="building" value="{{$profile->building}}">
                     </div>
                     <div class="form__error">
                         @error('building')

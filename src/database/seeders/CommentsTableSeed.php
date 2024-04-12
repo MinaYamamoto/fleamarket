@@ -15,13 +15,13 @@ class CommentsTableSeed extends Seeder
     public function run()
     {
         $param = [
-            'user_id' => '2',
+            'user_id' => '3',
             'item_id' => '1',
             'comment' =>'購入者コメント登録'
         ];
         DB::table('comments')->insert($param);
         $param = [
-            'user_id' => '1',
+            'user_id' => '2',
             'item_id' => '1',
             'comment' =>'出品者コメント登録'
         ];
@@ -29,7 +29,37 @@ class CommentsTableSeed extends Seeder
         $param = [
             'user_id' => '2',
             'item_id' => '1',
-            'comment' =>'削除確認用コメント登録'
+            'comment' =>'出品者削除確認用コメント登録'
+        ];
+        DB::table('comments')->insert($param);
+        $param = [
+            'user_id' => '3',
+            'item_id' => '1',
+            'comment' =>'購入者削除確認用コメント登録'
+        ];
+        DB::table('comments')->insert($param);
+        $param = [
+            'user_id' => '4',
+            'item_id' => '2',
+            'comment' =>'TESTコメント登録1'
+        ];
+        DB::table('comments')->insert($param);
+        $param = [
+            'user_id' => '4',
+            'item_id' => '2',
+            'comment' =>'TESTコメント登録2'
+        ];
+        DB::table('comments')->insert($param);
+        $param = [
+            'user_id' => '5',
+            'item_id' => '2',
+            'comment' =>'TESTコメント登録3'
+        ];
+        DB::table('comments')->insert($param);
+        $param = [
+            'user_id' => '2',
+            'item_id' => '2',
+            'comment' =>'TESTコメント登録4'
         ];
         DB::table('comments')->insert($param);
     }

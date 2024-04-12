@@ -19,6 +19,7 @@ class ItemsTableSeed extends Seeder
             'category_content_id' => '1',
             'condition_id' => '1',
             'name' => 'テスト商品登録',
+            'brand_name' => 'テストブランド名',
             'explanation' => 'テスト商品の説明',
             'price' => '10000',
             'image' => '/storage/sak0109-003.jpg'
@@ -29,6 +30,7 @@ class ItemsTableSeed extends Seeder
             'category_content_id' => '2',
             'condition_id' => '2',
             'name' => 'TestItem',
+            'brand_name' => '',
             'explanation' => 'TestItemの説明',
             'price' => '5000',
             'image' => '/storage/sak0109-003.jpg'

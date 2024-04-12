@@ -6,11 +6,11 @@
 @endsection
 
 @section('header')
-<div class="header__search">
-    <form class="search-form" method="get">
+<div class="header-search">
+    <form action="/search" class="header-search__form" method="get">
         @csrf
-        <div class="search-form__inner">
-            <input class="search-form__txt" placeholder=" なにをお探しですか？">
+        <div class="header-search__inner">
+            <input class="header-search__txt" name="keyword" placeholder=" なにをお探しですか？">
         </div>
     </form>
 </div>
@@ -52,7 +52,7 @@
     <div class="detail__explanation">
         <div class="detail__item">
             <h2 class="detail__ttl">{{$item->name}}</h2>
-            <div class="detail__item-name">ブランド名</div>
+            <div class="detail__item-name">{{$item->brand_name}}</div>
         </div>
         <div class="detail__item">
             <span class="detail__item-price">&yen;{{number_format($item->price) }}(値段)</span>
@@ -118,8 +118,12 @@
                     <label class="detail__label">カテゴリー</label>
                 </div>
                 <div class="detail__category-tags">
-                    <span class="detail__category-tag">{{$category->name}}</span>
-                    <span class="detail__category-tag">{{$content->name}}</span>
+                    <div>
+                        <span class="detail__category-tag">{{$category->name}}</span>
+                    </div>
+                    <div>
+                        <span class="detail__category-tag">{{$content->name}}</span>
+                    </div>
                 </div>
             </div>
             <div class="detail__flex">

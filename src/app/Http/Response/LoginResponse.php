@@ -23,7 +23,7 @@ class LoginResponse implements LoginResponseContract
         }
         switch ($role) {
             case 'admin':
-                return redirect('/admin/user');
+                return redirect('/admin');
             case 'user':
                 return redirect('/mypage');
             default:

@@ -1,0 +1,178 @@
+@media screen and (min-width: 769px) {
+    .header__link {
+        display: flex;
+        justify-content: flex-end;
+        margin: 0 50px 0 auto;
+        width: 30%;
+    }
+
+    .header__link-logout {
+        border: none;
+        background-color: #000;
+        cursor: pointer;
+        color: #fff;
+    }
+
+    .admin {
+        margin-top: 80px;
+        margin-left: 30px;
+    }
+
+    .admin__header {
+        margin-top: 10px;
+    }
+
+    .user {
+        margin-left: 30px;
+    }
+
+    .user__flex {
+        display: flex;
+        margin-bottom: 10px;
+    }
+
+    .back__link {
+        margin-left: 20px;
+    }
+
+    .back__top {
+        display: inline-block;
+        text-decoration: none;
+        text-align: center;
+        color: #000;
+        background-color: rgb(222, 220, 220);
+        border-radius: 10px;
+        height: 30px;
+        width: 100px;
+        font-size: 13px;
+        padding-top: 6px;
+    }
+
+    .user__ttl {
+        margin-left: 33%;
+    }
+
+    .user__header {
+        font-size: 18px;
+        margin: 0;
+    }
+
+    .user-delete__success {
+        margin: 0 auto;
+        color: #ff333f;
+        width: 80%;
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    .user-table {
+        margin: 10px auto;
+        width: 80%;
+        text-align: center;
+    }
+
+    .user-table__inner {
+        width: 100%;
+    }
+
+    .user-table__row {
+        border-bottom: 1px solid #a5a2a2;
+        height: 50px;
+    }
+
+    .delete-form__button-submit {
+        background-color: #ff333f;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 60px;
+        height: 30px;
+        outline: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header__link {
+        display: flex;
+        justify-content: flex-end;
+        margin: 0 30px 0 auto;
+        width: 30%;
+    }
+
+    .header__link-logout {
+        border: none;
+        background-color: #000;
+        cursor: pointer;
+        color: #fff;
+    }
+
+    .admin {
+        margin-left: 30px;
+    }
+
+    .admin__header {
+        margin-top: 10px;
+    }
+
+    .back__link {
+        margin-left: 20px;
+    }
+
+    .back__top {
+        display: inline-block;
+        text-decoration: none;
+        text-align: center;
+        color: #000;
+        background-color: rgb(222, 220, 220);
+        border-radius: 10px;
+        height: 30px;
+        width: 100px;
+        font-size: 13px;
+        padding-top: 6px;
+    }
+
+    .user__ttl {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .user__header {
+        font-size: 18px;
+        margin: 0;
+    }
+
+    .user-delete__success {
+        margin: 0 auto;
+        color: #ff333f;
+        width: 80%;
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    .user-table {
+        margin: 10px auto;
+        width: 80%;
+        text-align: center;
+    }
+
+    .user-table__inner {
+        width: 100%;
+    }
+
+    .user-table__row {
+        border-bottom: 1px solid #a5a2a2;
+        height: 50px;
+    }
+
+    .delete-form__button-submit {
+        background-color: #ff333f;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 60px;
+        height: 30px;
+        outline: none;
+    }
+}

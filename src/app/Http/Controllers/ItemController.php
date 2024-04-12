@@ -26,9 +26,10 @@ class ItemController extends Controller
 
     public function search(Request $request)
     {
+        $user_id = Auth::id();
         $items = Item::KeywordSearch($request->keyword)->get();
         foreach($items as $item) {
-            $mylists = Mylist::where('item_id', $item->id)->get();
+            $mylists = Mylist::where('item_id', $item->id)->where('user_id', $user_id)->get();
         }
         return view('index', compact('items','mylists'));
     }
@@ -44,7 +45,7 @@ class ItemController extends Controller
         return view('detail', compact('item', 'category', 'content', 'mylists', 'comments'));
     }
 
-    public function sellindex()
+    public function sellIndex()
     {
         $category_contents = CategoryContent::all();
         $conditions = Condition::all();

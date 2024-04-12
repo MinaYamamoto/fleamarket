@@ -15,8 +15,8 @@ class CreateCategoryContentsTable extends Migration
     {
         Schema::create('category_contents', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
-            $table->foreignId('content_id')->constrained()->onDelete('cascade');            $table->timestamps();
+            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('content_id')->constrained()->cascadeOnDelete();            $table->timestamps();
         });
     }
 

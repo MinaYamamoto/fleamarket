@@ -35,5 +35,19 @@ class UsersTableSeed extends Seeder
             'role' => 'user',
         ];
         DB::table('users')->insert($param);
+        $param = [
+            'name' => 'テスト　プロフィール未登録１',
+            'email' => 'user3@email.com',
+            'password' => \Hash::make('12345678'),
+            'role' => 'user',
+        ];
+        DB::table('users')->insert($param);
+        $param = [
+            'name' => 'テスト　プロフィール未登録２',
+            'email' => 'user4@email.com',
+            'password' => \Hash::make('12345678'),
+            'role' => 'user',
+        ];
+        DB::table('users')->insert($param);
     }
 }

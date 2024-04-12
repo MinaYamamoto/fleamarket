@@ -9,6 +9,11 @@ class CategoryContent extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'category_id',
+        'content_id'
+    ];
+
     public function item()
     {
         return $this->hasOne(Item::class);

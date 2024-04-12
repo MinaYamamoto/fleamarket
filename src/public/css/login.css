@@ -1,13 +1,13 @@
 @media screen and (min-width: 769px) {
 
-    .login__heading {
-        text-align: center;
-        padding-top: 20px;
-    }
-
     .login__content {
         max-width: 680px;
         margin: 0 auto;
+    }
+
+    .login__heading {
+        text-align: center;
+        padding-top: 80px;
     }
 
     .form__group-content {
@@ -15,7 +15,8 @@
     }
 
     .form__ttl {
-        margin: 10px 0 0 25%;
+        margin: 0 auto;
+        width: 350px;
     }
 
     .form__ttl-label {
@@ -65,4 +66,70 @@
     }
 }
 
-@media screen and (max-width: 768px) {}
+@media screen and (max-width: 768px) {
+    .login__content {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .login__heading {
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    .form__group-content {
+        height: 80px;
+    }
+
+    .form__ttl {
+        margin: 0 auto;
+        width: 50%;
+    }
+
+    .form__ttl-label {
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    .form__input {
+        text-align: center;
+        margin: 3px auto;
+    }
+
+    .form__input-text {
+        width: 50%;
+        height: 30px;
+    }
+
+    .form__error {
+        text-align: center;
+        color: #ff333f;
+    }
+
+    .form__button {
+        text-align: center;
+        padding-top: 35px;
+    }
+
+    .form__button-submit {
+        color: #fff;
+        background-color: #ff333f;
+        border: none;
+        border-radius: 3px;
+        font-size: 13px;
+        height: 30px;
+        width: 50%;
+        cursor: pointer;
+    }
+
+    .form__link {
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .form__link__register {
+        text-decoration: none;
+        color: #0073cc
+    }
+
+}

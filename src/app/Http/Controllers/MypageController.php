@@ -17,7 +17,7 @@ class MypageController extends Controller
     {
         $user_id = Auth::id();
         $items = Item::where('user_id', $user_id)->get();
-        $sells = Purchase::where('user_id', $user_id)->get();
+        $purchases = Purchase::where('user_id', $user_id)->get();
         $profile = Profile::where('user_id', $user_id)->first();
         if(is_null($profile)){
             $post_code='';
@@ -28,17 +28,17 @@ class MypageController extends Controller
                 $profile['profile_image'] = "/storage/kkrn_icon_user_1.svg";
             }
         }
-        return view('mypage',compact('items', 'sells', 'profile'));
+        return view('mypage',compact('items', 'purchases', 'profile'));
     }
 
-    public function profileindex()
+    public function profileIndex()
     {
         $user_id = Auth::id();
         $profile = Profile::where('user_id', $user_id)->first();
         return view('profile', compact('profile'));
     }
 
-    public function profilestore()
+    public function profileStore()
     {
         $user_id = Auth::id();
         $profile_check = Profile::where('user_id', $user_id)->first();
@@ -57,7 +57,7 @@ class MypageController extends Controller
         return view('profile', compact('profile'));
     }
 
-    public function profileupdate(MypageRequest $request)
+    public function profileUpdate(MypageRequest $request)
     {
         $user = $request->only(['name']);
         $profile = $request->only(['post_code', 'address', 'building']);

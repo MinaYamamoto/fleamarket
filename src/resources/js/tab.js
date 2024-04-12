@@ -20,3 +20,18 @@ window.openTab = function (evt, tabName) {
     document.getElementById(tabName).style.display = "flex";
     evt.currentTarget.className += " active";
 }
+
+localStorage.setItem('activeTab', tabName);
+
+window.onload = function () {
+    var activeTab = localStorage.getItem('activeTab');
+    console.log(activeTab);
+    if (activeTab) {
+        var tabContent = document.getElementById(activeTab);
+        if (tabContent) {
+            tabContent.style.display = 'flex';
+            var tabLink = document.querySelector('.tab__link[data-tab="' + activeTab + '"]');
+            tabLink.classList.add('active');
+        }
+    }
+}
