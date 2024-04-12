@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      php: 8.0
+      php: 8.2
       nodejs: 12
   build:
     commands:
