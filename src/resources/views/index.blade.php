@@ -5,11 +5,11 @@
 @endsection
 
 @section('header')
-<div class="header__search">
-    <form action="/search" class="search-form" method="get">
+<div class="header-search">
+    <form action="/search" class="header-search__form" method="get">
         @csrf
-        <div class="search-form__inner">
-            <input class="search-form__txt" name="keyword" placeholder=" なにをお探しですか？">
+        <div class="header-search__inner">
+            <input class="header-search__txt" name="keyword" placeholder=" なにをお探しですか？">
         </div>
     </form>
 </div>
@@ -51,10 +51,10 @@
     @foreach($items as $item)
     <div class="card">
         <div class="card__item">
-            <a href="/item/{{$item->id}}"><img class="card__img" src="{{ $item->image }}" alt="item"></a>
+            <a href="/item/{{ $item->id }}"><img class="card__img" src="{{ $item->image }}" alt="item"></a>
         </div>
         <div class="card__txt">
-            <p class="card__item-price">&yen;{{number_format($item->price) }}</p>
+            <p class="card__txt-price">&yen;{{ number_format($item->price) }}</p>
         </div>
     </div>
     @endforeach
@@ -66,7 +66,7 @@
             <a href="/item/{{$mylist->item_id}}"><img class="card__img" src="{{$mylist ['item'] ['image']}}" alt="item"></a>
         </div>
         <div class="card__txt">
-            <p class="card__item-price">&yen;{{number_format($mylist->item->price) }}</p>
+            <p class="card__txt-price">&yen;{{number_format($mylist->item->price) }}</p>
         </div>
     </div>
     @endforeach

@@ -6,10 +6,10 @@
 
 @section('header')
 <div class="header-search">
-    <form class="header-search__form" method="get">
+    <form action="/search" class="header-search__form" method="get">
         @csrf
         <div class="header-search__inner">
-            <input class="header-search__txt" placeholder=" なにをお探しですか？">
+            <input class="header-search__txt" name="keyword" placeholder=" なにをお探しですか？">
         </div>
     </form>
 </div>
@@ -63,13 +63,13 @@
         @endforeach
     </div>
     <div class="card__list" id="tab2">
-        @foreach($sells as $sell)
+        @foreach($purchases as $purchase)
         <div class="card">
             <div class="card__item">
-                <a href="/item/{{ $sell->item->id }}"><img class="card__img" src="{{ $sell->item->image }}" alt="item"></a>
+                <a href="/item/{{ $purchase->item->id }}"><img class="card__img" src="{{ $purchase->item->image }}" alt="item"></a>
             </div>
             <div class="card__txt">
-                <p class="card__item-price">&yen;{{number_format($sell->price) }}</p>
+                <p class="card__item-price">&yen;{{number_format($purchase->item->price) }}</p>
             </div>
         </div>
         @endforeach

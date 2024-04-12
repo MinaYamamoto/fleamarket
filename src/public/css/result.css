@@ -1,0 +1,106 @@
+@media screen and (min-width: 769px) {
+    .header__link {
+        display: flex;
+        justify-content: flex-end;
+        margin: 0 50px 0 auto;
+        width: 30%;
+    }
+
+    .header__link-logout {
+        border: none;
+        background-color: #000;
+        cursor: pointer;
+        color: #fff;
+    }
+
+    .result__content {
+        width: 400px;
+        height: 250px;
+        margin: auto;
+        padding: 40px;
+        background-color: #fff;
+        border-radius: 5px;
+    }
+
+    .result__msg {
+        display: inline;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .msg__txt {
+        font-size: 20px;
+    }
+
+    .form__button {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .form__button-submit {
+        color: #fff;
+        background-color: #ff333f;
+        border: none;
+        border-radius: 3px;
+        font-size: 13px;
+        height: 30px;
+        width: 70px;
+        cursor: pointer;
+        text-decoration: none;
+        padding-top: 5px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header__link {
+        display: flex;
+        justify-content: flex-end;
+        margin: 0 50px 0 auto;
+        width: 30%;
+    }
+
+    .header__link-logout {
+        border: none;
+        background-color: #000;
+        cursor: pointer;
+        color: #fff;
+    }
+
+    .result__content {
+        width: 250px;
+        height: 180px;
+        margin: auto;
+        margin-top: 20px;
+        padding: 40px;
+        background-color: #fff;
+        border-radius: 5px;
+    }
+
+    .result__msg {
+        display: inline;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .msg__txt {
+        font-size: 20px;
+    }
+
+    .form__button {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .form__button-submit {
+        color: #fff;
+        background-color: #ff333f;
+        border: none;
+        border-radius: 3px;
+        font-size: 13px;
+        height: 30px;
+        width: 70px;
+        cursor: pointer;
+        text-decoration: none;
+        padding-top: 5px;
+    }
+}

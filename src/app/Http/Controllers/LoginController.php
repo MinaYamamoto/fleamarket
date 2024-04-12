@@ -12,7 +12,7 @@ class LoginController extends Controller
         $role = Auth::user()->role;
         $checkrole = explode(',', $role);
         if (in_array('admin', $checkrole)) {
-            return redirect('/admin/user');
+            return redirect('/admin');
         } elseif(in_array('user', $checkrole)) {
             return redirect('/mypage');
         }

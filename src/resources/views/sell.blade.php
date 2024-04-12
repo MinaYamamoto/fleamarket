@@ -96,6 +96,17 @@
                             @enderror
                         </div>
                         <div class="item__explanation-ttl">
+                            <label class="item__explanation-label">ブランド名</label>
+                        </div>
+                        <div class="item__explanation-input">
+                            <input type="text" class="item__name-txt" name="brand_name" value="{{old('brand_name')}}">
+                        </div>
+                        <div class="form__error">
+                            @error('brand_name')
+                            {{ $message }}
+                            @enderror
+                        </div>
+                        <div class="item__explanation-ttl">
                             <label class="item__explanation-label">商品の説明</label>
                         </div>
                         <div class="item__explanation-input">
