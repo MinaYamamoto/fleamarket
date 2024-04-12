@@ -3,19 +3,15 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      php: 7.4
+      php: 8.0
       nodejs: 12
-  pre_build:
-    commands:
-      - echo "pre-build"
-      - aws ssm get-parameter --with-decryption --name .env.production --query Parameter.Value | sed -e 's/^"//' -e 's/"$//' -e 's/\\\"/\"/g' | awk '{gsub(/\\n/,"\n")}1' > .env
   build:
     commands:
-      - echo "build"
       - composer install
       - npm install
       - npm run prod
-
+      - rm -rf node_modules
+      - vendor/bin/phpunit
 artifacts:
   files:
     - "**/*"
