@@ -8,9 +8,8 @@ phases:
   build:
     commands:
       - cd ${CODEBUILD_SRC_DIR}/src
-      - cp laravel/.env.example laravel/.env
-      - . laravel/deploy/set_env_variables.sh
-      - bash laravel/deploy/set_env_variables.sh
+      - cp .env.example .env
+      - bash set_env_variables.sh
       - composer install
       - npm install
       - npm run prod
