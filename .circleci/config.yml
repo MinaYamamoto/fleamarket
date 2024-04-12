@@ -16,7 +16,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - SHA256:hAKPk6Ndeq4CzmrNAdS/Uti1XLB5K14rvu7motew+R8
-      - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/fleamarket && git pull'
+      - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/fleamarket/src && git pull'
 
 workflows:
   version: 2
