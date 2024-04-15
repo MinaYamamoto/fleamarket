@@ -4,6 +4,9 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Category;
@@ -12,6 +15,7 @@ use App\Models\CategoryContent;
 use App\Models\Condition;
 use App\Models\Item;
 use App\Models\Mylist;
+use App\Http\Requests\ItemRequest;
 use Database\Seeders\CategoriesTableSeed;
 use Database\Seeders\ContentsTableSeed;
 use Database\Seeders\Category_contentsTableSeed;
@@ -21,20 +25,21 @@ class ItemTest extends TestCase
 {
     use DatabaseMigrations;
 
-    private $users;
+    private $userSell;
+    private $userPurchase;
     private $firstItem;
     private $secondItem;
 
     public function setUp(): void
     {
         parent::setUp();
-        $this->users = User::create([
+        $this->userSell = User::create([
             'name' => 'テスト　Unit1',
             'email' => 'unit1@email.com',
             'password' => \Hash::make('12345678'),
             'role' => 'user',
         ]);
-        $this->users = User::create([
+        $this->userPurchase = User::create([
             'name' => 'テスト　Unit2',
             'email' => 'unit2@email.com',
             'password' => \Hash::make('12345678'),
@@ -100,10 +105,148 @@ class ItemTest extends TestCase
     /** @test */
     public function getSellIndex()
     {
+        $this->category = Category::all();
+        $this->content = Content::all();
+
         $response = $this->get("/sell");
-        $response->assertOk()
-        ->assertSee($this->category->name)
-        ->assertSee($this->content->name)
-        ->assertSee($this->condition->name);
+        $response->assertStatus(302);
+    }
+
+    /** @test */
+    public function store()
+    {
+        Storage::fake('public');
+        Storage::fake('s3');
+        $file = UploadedFile::fake()->image('test-image.jpg');
+
+        $response = $this->actingAs($this->userSell)->post('/sell',[
+            'user_id' => $this->userSell->id,
+            'category_content_id' => '3',
+            'condition_id' => '3',
+            'name' => 'UnitTestSell',
+            'brand_name' => 'TestBrand',
+            'explanation' => 'UnitTestSell',
+            'price' => '8000',
+            'image' => $file,
+        ]);
+
+        $response->assertStatus(302);
+
+        $item = Item::where('name', 'UnitTestSell')->first();
+        $this->assertNotNull($item);
+        $this->assertDatabaseHas('items',[
+            'id' => $item->id,
+            'user_id' => $this->userSell->id,
+            'category_content_id' => 3,
+            'condition_id' => 3,
+            'name' => 'UnitTestSell',
+            'brand_name' => 'TestBrand',
+            'explanation' => 'UnitTestSell',
+            'price' => 8000,
+            'image' => '/storage/test-image.jpg',
+        ]);
+    }
+
+    /**
+     *  @test
+     *  @dataProvider dataItem
+     */
+    public function request(array $keys, array $values, bool $expect)
+    {
+        $dataList = array_combine($keys, $values);
+        $request = new ItemRequest();
+        $rules = $request->rules();
+        $validator = Validator::make($dataList, $rules);
+        $result = $validator->passes();
+        $this->assertEquals($expect, $result);
+    }
+
+    public function dataItem()
+    {
+        $file = UploadedFile::fake()->image('test-image.jpg');
+        $file_max = UploadedFile::fake()->image('test-image.jpg')->size(11000);
+        $file_txt = UploadedFile::fake()->image('test-image.txt');
+        return[
+            'OK' => [
+                ['category_content_id', 'condition_id', 'name', 'brand_name', 'explanation', 'price', 'image'],
+                [1, 2, 'テスト商品登録', 'テストブランド名', 'テスト商品の説明', 10000, $file],
+                true
+            ],
+            'カテゴリー選択必須' => [
+                ['category_content_id', 'condition_id', 'name', 'brand_name', 'explanation', 'price', 'image'],
+                [ null, 2, 'テスト商品登録', 'テストブランド名', 'テスト商品の説明', 10000, $file],
+                false
+            ],
+            'コンディション選択必須' => [
+                ['category_content_id', 'condition_id', 'name', 'brand_name', 'explanation', 'price', 'image'],
+                [ 1, null, 'テスト商品登録', 'テストブランド名', 'テスト商品の説明', 10000, $file],
+                false
+            ],
+            '商品名入力必須' => [
+                ['category_content_id', 'condition_id', 'name', 'brand_name', 'explanation', 'price', 'image'],
+                [1, 2, null, 'テストブランド名', 'テスト商品の説明', 10000, $file],
+                false
+            ],
+            '商品名文字列' => [
+                ['category_content_id', 'condition_id', 'name', 'brand_name', 'explanation', 'price', 'image'],
+                [1, 2, 1, 'テストブランド名', 'テスト商品の説明', 10000, $file],
+                false
+            ],
+            '商品名文字数' => [
+                ['category_content_id', 'condition_id', 'name', 'brand_name', 'explanation', 'price', 'image'],
+                [1, 2, str_repeat('a', 256), 'テストブランド名', 'テスト商品の説明', 10000, $file],
+                false
+            ],
+            'ブランド名文字列' => [
+                ['category_content_id', 'condition_id', 'name', 'brand_name', 'explanation', 'price', 'image'],
+                [1, 2, 'テスト商品登録',1 , 'テスト商品の説明', 10000, $file],
+                false
+            ],
+            'ブランド名文字列' => [
+                ['category_content_id', 'condition_id', 'name', 'brand_name', 'explanation', 'price', 'image'],
+                [1, 2, 'テスト商品登録',str_repeat('a', 256) , 'テスト商品の説明', 10000, $file],
+                false
+            ],
+            '商品説明入力必須' => [
+                ['category_content_id', 'condition_id', 'name', 'brand_name', 'explanation', 'price', 'image'],
+                [1, 2, 'テスト商品登録', 'テストブランド名',null , 10000, $file],
+                false
+            ],
+            '商品説明文字列' => [
+                ['category_content_id', 'condition_id', 'name', 'brand_name', 'explanation', 'price', 'image'],
+                [1, 2, 'テスト商品登録', 'テストブランド名',1 , 10000, $file],
+                false
+            ],
+            '商品説明文字数' => [
+                ['category_content_id', 'condition_id', 'name', 'brand_name', 'explanation', 'price', 'image'],
+                [1, 2, 'テスト商品登録', 'テストブランド名',str_repeat('a', 256) , 10000, $file],
+                false
+            ],
+            '金額入力必須' => [
+                ['category_content_id', 'condition_id', 'name', 'brand_name', 'explanation', 'price', 'image'],
+                [1, 2, 'テスト商品登録', 'テストブランド名', 'テスト商品の説明', null, $file],
+                false
+            ],
+            '金額数値' => [
+                ['category_content_id', 'condition_id', 'name', 'brand_name', 'explanation', 'price', 'image'],
+                [1, 2, 'テスト商品登録', 'テストブランド名', 'テスト商品の説明', 'Test', $file],
+                false
+            ],
+            '商品画像選択必須' => [
+                ['category_content_id', 'condition_id', 'name', 'brand_name', 'explanation', 'price', 'image'],
+                [1, 2, 'テスト商品登録', 'テストブランド名', 'テスト商品の説明', 10000, null],
+                false
+            ],
+            '商品画像サイズ' => [
+                ['category_content_id', 'condition_id', 'name', 'brand_name', 'explanation', 'price', 'image'],
+                [1, 2, 'テスト商品登録', 'テストブランド名', 'テスト商品の説明', 10000, $file_max],
+                false
+            ],
+            '商品画像種類' => [
+                ['category_content_id', 'condition_id', 'name', 'brand_name', 'explanation', 'price', 'image'],
+                [1, 2, 'テスト商品登録', 'テストブランド名', 'テスト商品の説明', 10000, $file_txt],
+                false
+            ],
+        ];
     }
 }

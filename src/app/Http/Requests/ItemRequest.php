@@ -27,6 +27,7 @@ class ItemRequest extends FormRequest
             'category_content_id' => 'required',
             'condition_id' => 'required',
             'name' => 'required|string|max:255',
+            'brand_name' => 'string|max:255',
             'explanation' => 'required|string|max:255',
             'price' => 'required|integer',
             'image' => 'required|mimes:jpg,jpeg,png|max:10240'
@@ -41,6 +42,8 @@ class ItemRequest extends FormRequest
             'name.required' => '商品名を入力してください',
             'name.string' => '商品名は文字列で入力してください',
             'name.max' => '商品名は255文字以内で入力してください',
+            'brand_name.string' => 'ブランド名は文字列で入力してください',
+            'brand_name.max' => 'ブランド名は255文字以内で入力してください',
             'explanation.required' => '商品の説明を入力してください',
             'explanation.string' => '商品の説明は文字列で入力してください',
             'explanation.max' => '商品の説明は255文字以内で入力してください',

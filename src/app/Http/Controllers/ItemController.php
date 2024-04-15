@@ -54,7 +54,7 @@ class ItemController extends Controller
 
     public function store(ItemRequest $request)
     {
-        $newItem = $request->only(['user_id', 'category_content_id', 'condition_id', 'name', 'explanation', 'price']);
+        $newItem = $request->only(['user_id', 'category_content_id', 'condition_id', 'name', 'brand_name','explanation', 'price']);
         if(request('image')) {
             $file = $request->file('image');
             $file_name = $file->getClientOriginalName();
@@ -62,7 +62,7 @@ class ItemController extends Controller
                 $path = Storage::putFileAs('public', $file, $file_name);
                 $newItem['image'] = Storage::url($path);
             } else {
-                $path = Storage::disk('s3')->putFileAs('/', $file, $file_name, 'publick');
+                $path = Storage::disk('s3')->putFileAs('/', $file, $file_name, 'public');
                 $newItem['image'] = Storage::disk('s3')->url($path);
             }
         }

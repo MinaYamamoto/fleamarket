@@ -55,5 +55,6 @@ Route::group(['middleware' => ['auth', 'can:admin-authority']], function() {
     Route::delete('/admin/user/{user_id}', [AdminController::class,'userDestroy']);
     Route::get('/admin/maillist', [AdminController::class, 'mailListIndex']);
     Route::get('/admin/mail', [MailController::class, 'index']);
+    Route::post('/admin/mail', [MailController::class, 'index']);
     Route::post('/admin/mail/execute', [MailController::class, 'execute']);
 });

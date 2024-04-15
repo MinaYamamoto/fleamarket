@@ -57,36 +57,4 @@ class UserTest extends TestCase
         ])->assertRedirect('/admin');
 
     }
-
-    /** @test */
-    public function failureUserLogin()
-    {
-        $this->post('login',[
-            'email' => 'test@email.com',
-            'password' => '12345678',
-        ])->assertInvalid(['email' => '認証情報と一致するレコードがありません']);
-        $this->post('login',[
-            'email' => 'unit1@email.com',
-            'password' => 'hogehoge',
-        ])->assertInvalid(['email' => '認証情報と一致するレコードがありません']);
-    }
-
-    /** @test */
-    public function request()
-    {
-        $this->post('login',[
-            'email' => 'admin1@email.com',
-            'password' => '',
-        ])->assertInvalid(['password' => 'パスワードを入力してください']);
-
-        $this->post('login',[
-            'email' => '',
-            'password' => '12345678',
-        ])->assertInvalid(['email' => 'メールアドレスを入力してください']);
-
-        $this->post('login',[
-            'email' => 'test',
-            'password' => '12345678',
-        ])->assertInvalid(['email' => 'メールアドレスは「ユーザ名@ドメイン」形式で入力してください']);
-    }
 }

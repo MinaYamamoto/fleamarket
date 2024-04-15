@@ -55,7 +55,7 @@
                 </div>
                 <div class="form__button">
                     <button class="form__button-submit" type="submit">更新する</button>
-                    <input type="hidden" name="id" value="{{$profile->id}}">
+                    <input type="hidden" name="profile_id" value="{{$profile->id}}">
                 </div>
             </div>
         </form>

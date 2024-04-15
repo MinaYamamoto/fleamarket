@@ -35,7 +35,7 @@
         <div class="detail__flex">
             <div class="img">
                 <div class="img__inner">
-                    <img class="img__item"  src="{{ $item->image }}" alt="item">
+                    <img class="img__item" src="{{ $item->image }}" alt="item">
                 </div>
             </div>
             <div class="detail__explanation">

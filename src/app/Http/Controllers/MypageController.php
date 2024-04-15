@@ -68,7 +68,7 @@ class MypageController extends Controller
                 $path = Storage::putFileAs('public', $file, $file_name);
                 $profile['profile_image'] = Storage::url($path);
             } else {
-                $path = Storage::disk('s3')->putFileAs('/', $file, $file_name, 'publick');
+                $path = Storage::disk('s3')->putFileAs('/', $file, $file_name, 'public');
                 $profile['profile_image'] = Storage::disk('s3')->url($path);
             }
         }
