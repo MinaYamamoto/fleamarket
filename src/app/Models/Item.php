@@ -14,6 +14,7 @@ class Item extends Model
         'category_content_id',
         'condition_id',
         'name',
+        'brand_name',
         'explanation',
         'price',
         'image',

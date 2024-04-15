@@ -151,7 +151,7 @@ class PurchaseController extends Controller
     public function addressUpdate(PurchaseRequest $request)
     {
         $new_profile = $request->only(['post_code', 'address', 'building']);
-        Profile::find($request->id)->update($new_profile);
+        Profile::find($request->profile_id)->update($new_profile);
         $purchaseUrl = Session::get('purchase_url');
         return new RedirectResponse($purchaseUrl);
     }

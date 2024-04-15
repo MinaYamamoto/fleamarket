@@ -40,7 +40,7 @@
                 <td class="mail-list-table__item">{{$user->email}}</td>
                 <td class="mail-list-table__item">
                     <div class="delete-form__button">
-                        <form action="/admin/mail" method="get">
+                        <form action="/admin/mail" method="post">
                             @csrf
                             <button class="delete-form__button-submit" type="submit">メール送信</button>
                             <input type="hidden" name="user_name" value="{{$user->name}}">

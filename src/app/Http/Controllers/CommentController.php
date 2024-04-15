@@ -36,12 +36,4 @@ class CommentController extends Controller
         return back();
     }
 
-    public function adminindex() {
-        $comments = Comment::all();
-        return view('admin/admin', compact('comments'));
-    }
-
-    public function admindestroy() {
-        return view('admin/admim');
-    }
 }
