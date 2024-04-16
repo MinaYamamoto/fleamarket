@@ -4,22 +4,20 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.4-node-browsers
-      - image: mysql:8.0
-    environment:
-      - MYSQL_ROOT_PASSWORD: root
-      - MYSQL_DATABASE: demo_test
-      - MYSQL_USER: root
-      - MYSQL_PASSWORD: root
+        environment:
+          MYSQL_HOST: "db"
+          MYSQL_PASSWORD: "root"
+          MYSQL_PORT: 3306
+      - image: circleci/mysql:8.0l
+        environment:
+          MYSQL_ROOT_PASSWORD: "root"
+          MYSQL_DATABASE: "demo_test"
+          MYSQL_USER: "root"
+          MYSQL_PASSWORD: "root"
+          MYSQL_HOST: "db"
+        name: "db"
     steps:
       - checkout
-      - run:
-          name: Install MySQL Client
-          command: |
-            sudo apt-get update
-            sudo apt-get install -y mysql-client
-      - run:
-          name: Remove Google Chrome apt repository
-          command: sudo rm -f /etc/apt/sources.list.d/google-chrome.list*
       - run:
           name: Install Docker Compose
           command: |
