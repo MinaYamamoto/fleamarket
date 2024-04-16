@@ -17,6 +17,9 @@ jobs:
           command: |
             sudo apt-get update && sudo apt-get install -y default-mysql-client
       - run:
+          name: Remove Google Chrome apt repository
+          command: sudo rm -f /etc/apt/sources.list.d/google-chrome.list*
+      - run:
           name: Install Docker Compose
           command: |
             sudo apt-get update
