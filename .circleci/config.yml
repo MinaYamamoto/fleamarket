@@ -9,6 +9,8 @@ jobs:
       - DB_CONNECTION: mysql_test
     steps:
       - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
       - run:
           name: Install Docker Compose
           command: |
