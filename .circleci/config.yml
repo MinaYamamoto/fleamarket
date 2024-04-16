@@ -1,29 +1,35 @@
 version: 2.1
-
 jobs:
   build:
     docker:
-      - image: circleci/php:8.0-fpm
+      - image: circleci/php:8.0-node-browsers
+
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "composer.json" }}
+            - v1-dependencies-
+      - run: composer install -n --prefer-dist
+      - save_cache:
+          key: v1-dependencies-{{ checksum "composer.json" }}
+          paths:
+            - ./vendor
+      - restore_cache:
+          keys:
+            - node-v1-{{ checksum "package.json" }}
+            - node-v1-
+      - run: yarn install
+      - save_cache:
+          key: node-v1-{{ checksum "package.json" }}
+          paths:
+            - node_modules
       - run:
-          name: Install dependencies
+          name: "Create database and run migration"
           command: |
-            apt-get update && \
-            apt-get install -y curl && \
-            curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+            touch storage/testing.sqlite
+            php artisan migrate --env=testing --database=sqlite_testing --force
       - run:
-          name: Build Docker images
-          command: docker-compose build
-      - run:
-          name: Start services
-          command: docker-compose up -d
-      - run:
-          name: Run PHPUnit tests
-          command: docker-compose exec php vendor/bin/phpunit
-
-workflows:
-  version: 2
-  build:
-    jobs:
-      - build
+          name: "テスト"
+          command: |
+            ./vendor/bin/phpunit
