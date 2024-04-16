@@ -10,7 +10,7 @@ jobs:
           command: |
             docker-compose build
             docker-compose up -d
-            docker-compose run composer install
+            docker-compose run composer install -n --prefer-dist
       - run:
           name: Setup Laravel
           command: |
