@@ -40,3 +40,8 @@ services:
             - mysql
         ports:
             - 8080:80
+
+    composer:
+        image: composer:latest
+        volumes:
+            - ./src:/var/www/
