@@ -3,12 +3,12 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/php:7.4-node-browsers
+      - image: cimg/php:8.1-browsers
         environment:
           MYSQL_HOST: "db"
           MYSQL_PASSWORD: "root"
           MYSQL_PORT: 3306
-      - image: circleci/mysql:8.0l
+      - image: cimg/mysql:8.0
         environment:
           MYSQL_ROOT_PASSWORD: "root"
           MYSQL_DATABASE: "demo_test"
