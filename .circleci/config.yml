@@ -2,8 +2,6 @@ version: 2.1
 
 jobs:
   build:
-    machine:
-      enabled: true
     docker:
       - image: circleci/php:8.0
         environment:
