@@ -40,9 +40,3 @@ services:
             - mysql
         ports:
             - 8080:80
-
-    composer:
-        image: composer
-        command: "composer install"
-        volumes:
-            - ./src:/var/www/
