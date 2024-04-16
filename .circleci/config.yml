@@ -14,10 +14,10 @@ jobs:
       - run:
           name: Build and Run Docker Compose
           command: |
-            docker-compose run php bash
-            docker-compose run php up -d
-            docker-compose run php composer install
-            docker-compose run php cp .env.testing .env
-            docker-compose run php php artisan key:generate
-            docker-compose run php php artisan migrate:refresh --seed
-            docker-compose run php vendor/bin/phpunit
+            docker-compose exec php bash -c "
+              composer install
+              cp .env.testing .env
+              php artisan key:generate
+              php artisan migrate:refresh --seed
+              vendor/bin/phpunit
+            "
