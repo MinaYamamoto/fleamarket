@@ -31,7 +31,7 @@ jobs:
       - run:
           name: Start Nginx Container
           command: |
-            docker run -d --name nginx_container -v /path/to/nginx/conf:/etc/nginx/conf.d -p 8080:80 nginx:latest
+            docker run -d --name nginx_container -v /path/to/nginx/conf:/etc/nginx/conf.d -p 8081:80 nginx:latest
       - run:
           name: Build and Run Docker Compose
           command: |
