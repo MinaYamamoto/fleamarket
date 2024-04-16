@@ -10,6 +10,7 @@ jobs:
           command: |
             docker-compose build
             docker-compose up -d
+            sudo composer self-update --1
             docker-compose run composer install -n --prefer-dist
       - run:
           name: Setup Laravel
