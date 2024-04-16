@@ -1,25 +1,23 @@
 version: 2.1
+
 jobs:
   build:
-    docker:
-      - image: circleci/php:8.0-node-browsers
+    machine:
+      enabled: true
     steps:
       - checkout
       - run:
-          name: Setup docker
+          name: Install Docker Compose
           command: |
-            docker-compose build
+            sudo apt-get update
+            sudo apt-get install -y docker-compose
+      - run:
+          name: Build and Run Docker Compose
+          command: |
+            docker-compose exec php bash
             docker-compose up -d
-            sudo composer self-update --1
-            docker-compose run composer install -n --prefer-dist
-      - run:
-          name: Setup Laravel
-          command: |
-            cp .env.testing .env
-            docker-compose run php artisan key:generate
-            docker-compose run php artisan migrate:refresh --seed
-      - run:
-          name: Run Test
-          command: |
-            docker-compose run vendor/bin/phpunit
-
+            docker-compose run composer install
+            docker-compose run php cp .env.testing .env
+            docker-compose run php php artisan key:generate
+            docker-compose run php php artisan migrate:refresh --seed
+            docker-compose run php vendor/bin/phpunit
