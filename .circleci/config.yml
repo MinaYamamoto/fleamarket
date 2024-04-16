@@ -1,14 +1,21 @@
-version: 2.1
 jobs:
   build:
-    docker:
-      - image: circleci/php:7.4-node-browsers
+    machine: true
     steps:
       - checkout
-      - run: sudo composer self-update --1
-      - run: composer install -n --prefer-dist
-      - run: npm ci
-      - run: npm run dev
       - run:
-          name: php test
-          command: vendor/bin/phpunit
+          name: Setup docker
+          command: |
+            docker-compose build
+            docker-compose up -d
+            docker-compose run app composer install
+      - run:
+          name: Setup Laravel
+          command: |
+            cp .env.testing .env
+            docker-compose run app php artisan key:generate
+            docker-compose run app php artisan migrate:refresh --seed
+      - run:
+          name: Run Test
+          command: |
+            docker-compose run app vendor/bin/phpunit
