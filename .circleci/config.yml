@@ -7,6 +7,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install MySQL Client
+          command: sudo apt-get update && sudo apt-get install -y mysql-client
+      - run:
           name: Install Docker Compose
           command: |
             sudo apt-get update
