@@ -17,7 +17,8 @@ jobs:
               echo "composer.json exists in $HOME/project"
             else
               echo "composer.json does not exist in $HOME/project"
-            fi      - setup_remote_docker:
+            fi
+      - setup_remote_docker:
           docker_layer_caching: true
       - run:
           name: Install Docker Compose
