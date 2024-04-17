@@ -29,3 +29,14 @@ services:
             - ./docker/mysql/data:/var/lib/mysql
             - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
 
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        environment:
+            - PMA_ARBITRARY=1
+            - PMA_HOST=mysql
+            - PMA_USER=laravel_user
+            - PMA_PASSWORD=laravel_pass
+        depends_on:
+            - mysql
+        ports:
+            - 8080:80
