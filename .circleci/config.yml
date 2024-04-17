@@ -10,6 +10,10 @@ jobs:
       - DB_CONNECTION: mysql_test
     steps:
       - checkout
+      - run:
+          name: Log project directory
+          command: |
+            echo "Project directory: $HOME/project"
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
