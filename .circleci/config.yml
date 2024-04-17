@@ -10,7 +10,15 @@ jobs:
       - DB_CONNECTION: mysql_test
     steps:
       - checkout
-      - setup_remote_docker:
+      - run:
+          name: Check working directory existence
+          command: |
+            if [ -d "$HOME/project/src" ]; then
+              echo "Directory exists: $HOME/project/src"
+            else
+              echo "Directory does not exist: $HOME/project/src"
+              exit 1
+            fi      - setup_remote_docker:
           docker_layer_caching: true
       - run:
           name: Install Docker Compose
@@ -28,13 +36,13 @@ jobs:
             docker run -d --name nginx_container -v /docker/nginx:/etc/nginx/conf.d -p 8081:80 nginx:latest
       - run:
           name: Build and Run Docker Compose
-          working_directory: ~/project/var/www/src
+          working_directory: $HOME/project/src
           command: |
+            composer install
+            cp .env.testing .env
             docker-compose up -d
             docker-compose exec php bash -c "
-              composer install
-              cp .env.testing .env
               php artisan key:generate
               php artisan migrate:refresh --seed
-              vendor/bin/phpunit
+              php artisan test
             "
