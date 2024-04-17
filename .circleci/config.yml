@@ -30,6 +30,7 @@ jobs:
       - run:
           name: Build and Run Docker Compose
           command: |
+            cd /src
             docker-compose up -d
             docker-compose exec php bash -c "
               composer install
