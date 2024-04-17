@@ -13,7 +13,7 @@ jobs:
       - run:
           name: Log project directory
           command: |
-            echo "Project directory: $HOME/project"
+            echo "Project directory: $HOME/project/src"
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
@@ -32,7 +32,7 @@ jobs:
             docker run -d --name nginx_container -v /docker/nginx:/etc/nginx/conf.d -p 8081:80 nginx:latest
       - run:
           name: Build and Run Docker Compose
-          working_directory: $HOME/project/var/www/src
+          working_directory: $HOME/project/src
           command: |
             composer install
             cp .env.testing .env
