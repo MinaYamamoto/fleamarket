@@ -22,7 +22,7 @@ jobs:
       - run:
           name: Start Nginx Container
           command: |
-            docker run -d --name nginx_container -p 80:80 -t nginx:latest
+            docker run -d --name nginx_container -v /wsl$HOME/coachtech/fleamarket/docker/nginx:/etc/nginx/conf.d -p 8081:80 nginx:latest
       - run:
           name: Build and Run Docker Compose
           command: |
