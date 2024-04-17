@@ -27,7 +27,7 @@ jobs:
       - run:
           name: Customize Docker Compose file
           command: |
-            sed -i 's|./docker/nginx/default.conf|/home/circleci/project/docker/nginx/default.conf|g' docker-compose.yml
+            sed -i 's|./docker/nginx/default.conf|/home/circleci/project/docker/nginx|g' docker-compose.yml
       - run:
           name: Build and Run Docker Compose
           command: |
