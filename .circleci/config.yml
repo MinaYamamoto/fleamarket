@@ -11,10 +11,13 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Log project directory
+          name: Check composer.json existence
           command: |
-            echo "Project directory: $HOME/project/src"
-      - setup_remote_docker:
+            if [ -f "$HOME/project/composer.json" ]; then
+              echo "composer.json exists in $HOME/project"
+            else
+              echo "composer.json does not exist in $HOME/project"
+            fi      - setup_remote_docker:
           docker_layer_caching: true
       - run:
           name: Install Docker Compose
@@ -32,12 +35,12 @@ jobs:
             docker run -d --name nginx_container -v /docker/nginx:/etc/nginx/conf.d -p 8081:80 nginx:latest
       - run:
           name: Build and Run Docker Compose
-          working_directory: $HOME/project/src
+          working_directory: $HOME/project
           command: |
-            composer install
-            cp .env.testing .env
             docker-compose up -d
             docker-compose exec php bash -c "
+              composer install
+              cp .env.testing .env
               php artisan key:generate
               php artisan migrate:refresh --seed
               php artisan test
