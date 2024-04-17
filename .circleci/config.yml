@@ -1,22 +1,37 @@
-version: 2
+version: 2.1
+
 jobs:
   build:
-    machine:
-      image: circleci/classic:edge
+    docker:
+      - image: cimg/php:8.1.28-browsers
+      - image: cimg/mysql:8.0
+      - image: nginx:latest
+    environment:
+      - DB_CONNECTION: mysql_test
     steps:
       - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
       - run:
-          name: Dockerコンテナのビルド
-          command: docker-compose -f dockertest/docker-compose.test.yml build
+          name: Install Docker Compose
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y docker-compose
       - run:
-          name: Dockerコンテナの起動
-          command: docker-compose -f dockertest/docker-compose.test.yml up -d
+          name: Wait for DB
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 3m
       - run:
-          name: db接続を待機
-          command: sleep 10
+          name: Start Nginx Container
+          command: |
+            docker run -d --name nginx_container -v /containers/nginx/conf:/etc/nginx/conf.d -p 8081:80 nginx:latest
       - run:
-          name: データベースのセットアップ
-          command: docker-compose -f dockertest/docker-compose.test.yml exec web bundle exec rails db:migrate RAILS_ENV=test
-      - run:
-          name: Dockerコンテナの停止
-          command: docker-compose -f dockertest/docker-compose.test.yml down
+          name: Build and Run Docker Compose
+          command: |
+            docker-compose up -d
+            docker-compose exec php bash -c "
+              composer install
+              cp .env.testing .env
+              php artisan key:generate
+              php artisan migrate:refresh --seed
+              vendor/bin/phpunit
+            "
