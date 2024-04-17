@@ -5,7 +5,6 @@ jobs:
     docker:
       - image: cimg/php:8.1.28-browsers
       - image: cimg/mysql:8.0
-      - image: nginx:latest
     environment:
       - DB_CONNECTION: mysql_test
     steps:
@@ -23,7 +22,7 @@ jobs:
       - run:
           name: Start Nginx Container
           command: |
-            docker run -d --name nginx_container -v /docker/nginx/default.conf:/etc/nginx/conf.d/default.conf -p 8081:80 nginx:latest
+            docker run -d --name nginx_container -v /container/docker/nginx/default.conf:/etc/nginx/conf.d/default.conf -p 8080:80 nginx:latest
       - run:
           name: Build and Run Docker Compose
           command: |
