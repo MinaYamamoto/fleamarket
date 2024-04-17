@@ -29,7 +29,7 @@ jobs:
             docker run -d --name nginx_container -v /docker/nginx:/etc/nginx/conf.d -p 8081:80 nginx:latest
       - run:
           name: Build and Run Docker Compose
-          working_directory: backend
+          working_directory: src
           command: |
             docker-compose up -d
             docker-compose exec php bash -c "
