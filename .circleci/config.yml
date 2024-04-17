@@ -10,15 +10,6 @@ jobs:
       - DB_CONNECTION: mysql_test
     steps:
       - checkout
-      - run:
-          name: Check working directory existence
-          command: |
-            if [ -d "$HOME/project/src" ]; then
-              echo "Directory exists: $HOME/project/src"
-            else
-              echo "Directory does not exist: $HOME/project/src"
-              exit 1
-            fi      - setup_remote_docker:
           docker_layer_caching: true
       - run:
           name: Install Docker Compose
