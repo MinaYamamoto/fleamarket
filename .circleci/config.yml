@@ -8,16 +8,9 @@ jobs:
       - image: nginx:latest
     environment:
       - DB_CONNECTION: mysql_test
+    working_directory: /var/www/
     steps:
       - checkout
-      - run:
-          name: Check composer.json existence
-          command: |
-            if [ -f "$HOME/project/composer.json" ]; then
-              echo "composer.json exists in $HOME/project"
-            else
-              echo "composer.json does not exist in $HOME/project"
-            fi
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
@@ -37,7 +30,6 @@ jobs:
             docker run -d --name nginx_container -v /docker/nginx:/etc/nginx/conf.d -p 8081:80 nginx:latest
       - run:
           name: Build and Run Docker Compose
-          working_directory: $HOME/project
           command: |
             docker-compose up -d
             docker-compose exec php bash -c "
