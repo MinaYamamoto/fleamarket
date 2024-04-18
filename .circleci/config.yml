@@ -11,6 +11,9 @@ jobs:
     working_directory: /var/www/
     steps:
       - checkout
+      - run:
+          name: Change directory permissions
+          command: chmod 777 /var/www
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
