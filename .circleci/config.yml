@@ -11,10 +11,9 @@ jobs:
     steps:
       - run:
           name: Create directory
-          command: mkdir -m 777 -p $HOME/project/var/www
+          command: mkdir -m 777 -p /home/circleci/project/var/www
       - checkout
-          # checkout先のディレクトリを指定
-          path: $HOME/project
+          path: /home/circleci/project
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
@@ -34,7 +33,7 @@ jobs:
             docker run -d --name nginx_container -v /docker/nginx:/etc/nginx/conf.d -p 8081:80 nginx:latest
       - run:
           name: Build and Run Docker Compose
-          working_directory: $HOME/project/var/www
+          working_directory: /home/circleci/project/var/www
           command: |
             docker-compose up -d
             docker-compose exec php bash -c "
