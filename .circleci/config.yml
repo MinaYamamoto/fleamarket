@@ -3,43 +3,37 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: cimg/php:8.1.28-browsers
-      - image: cimg/mysql:8.0
-      - image: nginx:latest
-    environment:
-      - DB_CONNECTION: mysql_test
+      - image: circleci/php:7.4-node-browsers
+      - image: circleci/mysql:8.0
+      - image: circleci/nginx:1.21.1
+
     steps:
       - checkout
-      - run:
-          name: Create directory
-          command: mkdir -m 777 -p /home/circleci/project/var/www
-      - run: sudo composer self-update --1
-      - setup_remote_docker:
-          docker_layer_caching: true
+
       - run:
           name: Install Docker Compose
           command: |
             sudo apt-get update
             sudo apt-get install -y docker-compose
-            sed -i 's|./docker/nginx/default.conf|/docker/nginx|g' docker-compose.yml
-            sed -i 's|/etc/nginx/conf.d/default.conf|/etc/nginx/conf.d|g' docker-compose.yml
-            sed -i 's|./src:/var/www/|./src:/home/circleci/project/var/www|g' docker-compose.yml
+
       - run:
-          name: Wait for DB
-          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 3m
+          name: Start Services
+          command: docker-compose up -d
+
       - run:
-          name: Start Nginx Container
+          name: Wait for Services
+          command: docker-compose exec php sh -c "while ! nc -z mysql 3306; do sleep 1; done"
+
+      - run:
+          name: Run Tests
           command: |
-            docker run -d --name nginx_container -v /docker/nginx:/etc/nginx/conf.d -p 8081:80 nginx:latest
-      - run:
-          name: Build and Run Docker Compose
-          working_directory: /home/circleci/project/var/www/src
-          command: |
-            docker-compose up -d
-            docker-compose exec php bash -c "
+            docker-compose exec php sh -c "
               composer install
-              cp .env.testing .env
               php artisan key:generate
-              php artisan migrate:refresh --seed
+              php artisan migrate --seed
               php artisan test
             "
+
+      - run:
+          name: Stop Services
+          command: docker-compose down
