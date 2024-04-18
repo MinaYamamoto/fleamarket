@@ -11,9 +11,7 @@ jobs:
     steps:
       - run:
           name: Create directory
-          command: |
-            sudo mkdir -p /home/circleci/project/var/www
-            chmod 777 /home/circleci/project/var/www
+          command: mkdir -m 777 -p /home/circleci/project/var/www
       - checkout
       - setup_remote_docker:
           docker_layer_caching: true
