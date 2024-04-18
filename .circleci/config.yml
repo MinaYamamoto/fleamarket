@@ -12,10 +12,9 @@ jobs:
     steps:
       - run:
           name: Create directory
-          command: mkdir -p /var/www
-      - run:
-          name: Change directory permissions
-          command: chmod 777 /var/www
+          command: |
+            chmod 777 /var/www
+            mkdir -p /var/www
       - checkout
       - setup_remote_docker:
           docker_layer_caching: true
