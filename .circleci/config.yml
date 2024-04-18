@@ -10,12 +10,12 @@ jobs:
       - DB_CONNECTION: mysql_test
     working_directory: /var/www/
     steps:
-      - checkout
       - run:
           name: Create directory
           command: |
-            sudo mkdir -p /var/www
-            chmod 777 /var/www
+            sudo mkdir -p /home/circleci/project/var/www
+            chmod 777 /home/circleci/project/var/www
+      - checkout
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
