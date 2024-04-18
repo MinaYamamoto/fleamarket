@@ -9,10 +9,11 @@ jobs:
     environment:
       - DB_CONNECTION: mysql_test
     steps:
+      - checkout
       - run:
           name: Create directory
           command: mkdir -m 777 -p /home/circleci/project/var/www
-      - checkout
+      - run: sudo composer self-update --1
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
