@@ -120,9 +120,9 @@ jobs:
       - run:
           name: aws deploy
           command: |
-            ssh -o StrictHostKeyChecking=no -t ec2-user@${HOST_NAME} "cd grfl && \
+            ssh -o StrictHostKeyChecking=no -t ec2-user@${HOST_NAME} "cd fleamarket && \
               git pull origin master && \
-              cd /var/www/grfl/src && \
+              cd /var/www/fleamarket/src && \
               composer install -n --no-dev --prefer-dist && \
               npm ci && \
               npm run prod && \
