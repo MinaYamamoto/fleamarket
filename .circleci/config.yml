@@ -7,12 +7,13 @@ executors:
         environment:
           DB_HOST: mysql
           DB_USER: root
-          DB_PASSWORD: root
+          DB_PASSWORD: ""
       - image: cimg/mysql:8.0
         environment:
           DB_HOST: mysql
           DB_CONNECTION: mysql_test
           MYSQL_ROOT_HOST: "%"
+          MYSQL_ALLOW_EMPTY_PASSWORD: "true"
         name: mysql
     working_directory: ~/repo
 
@@ -24,12 +25,6 @@ commands:
           command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
           environment:
             DOCKERIZE_VERSION: v0.6.1
-  install-php-extensions:
-    steps:
-      - run:
-          name: Install PHP Exetensions
-          command: sudo docker-php-ext-install pdo_mysql
-          working_directory: src
   restore-cache-composer:
     steps:
       - restore_cache:
