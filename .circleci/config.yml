@@ -32,6 +32,8 @@ commands:
       - run:
           name: Install Composer
           command: composer install -n --prefer-dist
+          cp var/www/src/.env.testing var/www/src/.env
+          php artisan key:generate
           working_directory: src
   save-cache-composer:
     steps:
