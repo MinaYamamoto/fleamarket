@@ -78,7 +78,6 @@ jobs:
     steps:
       - checkout
       - install-dockerize
-      - install-php-extensions
       - restore-cache-composer
       - install-composer
       - save-cache-composer
