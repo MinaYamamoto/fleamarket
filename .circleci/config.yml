@@ -12,7 +12,7 @@ executors:
         environment:
           DB_HOST: mysql
           DB_CONNECTION: mysql_test
-          MYSQL_ROOT_HOST: "%"
+          MYSQL_ROOT_HOST: "mysql"
           MYSQL_ALLOW_EMPTY_PASSWORD: "true"
         name: mysql
     working_directory: ~/repo
