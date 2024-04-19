@@ -39,7 +39,7 @@ commands:
           command: |
             composer install -n --prefer-dist
             cp .env.testing .env
-            cp /src/app/config/database.ci.php /src/app/config/database.php
+            mv config/database.yml.ci config/database.yml
             php artisan key:generate
           working_directory: src
   save-cache-composer:
