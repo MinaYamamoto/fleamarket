@@ -73,6 +73,9 @@ commands:
           name: Install MySQL Client
           command: sudo apt-get update && sudo apt-get install -y mysql-client
       - run:
+          name: Check MySQL Server
+          command: mysql -h 127.0.0
+      - run:
           name: Create MySQL Database
           command: |
             mysql -h localhost -u root -proot -e "CREATE DATABASE IF NOT EXISTS demo_test;"
