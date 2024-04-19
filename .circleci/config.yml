@@ -86,7 +86,7 @@ commands:
     steps:
       - run:
           name: Migration & Seeding
-          command: yes | php artisan migrate
+          command: yes | sudo php artisan migrate
           working_directory: src
   test-unittest:
     steps:
