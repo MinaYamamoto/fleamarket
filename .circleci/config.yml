@@ -120,7 +120,7 @@ jobs:
       - run:
           name: aws deploy
           command: |
-            ssh -o StrictHostKeyChecking=no -t ${USER_NAME}@${HOST_NAME} "cd fleamarket && \
+            ssh ${USER_NAME}@${HOST_NAME} "cd fleamarket && \
               git pull origin master && \
               cd /var/www/fleamarket/src && \
               composer install -n --no-dev --prefer-dist && \
