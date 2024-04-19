@@ -11,6 +11,9 @@ jobs:
       - DB_CONNECTION: mysql_test
     steps:
       - checkout
+      - run:
+          name: Create directory
+          command: mkdir -m 777 -p ~/var/www
       - run: sudo composer self-update --1
       - setup_remote_docker:
           docker_layer_caching: true
@@ -30,7 +33,7 @@ jobs:
             docker run -d --name nginx_container -v /docker/nginx:/etc/nginx/conf.d -p 8081:80 nginx:latest
       - run:
           name: Build and Run Docker Compose
-          working_directory: src
+          working_directory: ~/var/www/src
           command: |
             docker-compose up -d
             docker-compose exec php bash -c "
