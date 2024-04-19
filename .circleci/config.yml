@@ -21,7 +21,7 @@ commands:
     steps:
       - run:
           name: Install PHP Exetensions
-          command: sudo docker-php-ext-install pdo_mysql
+          command: sudo docker-php-ext-install
           working_directory: src
   restore-cache-composer:
     steps:
