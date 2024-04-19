@@ -86,7 +86,7 @@ commands:
     steps:
       - run:
           name: Migration & Seeding
-          command: yes | sudo php artisan migrate
+          command: yes | mysql -h mysql -u root -e  "php artisan migrate"
           working_directory: src
   test-unittest:
     steps:
