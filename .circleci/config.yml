@@ -69,7 +69,7 @@ commands:
             - node_modules
   create-database:
     steps:
-          - run:
+      - run:
           name: Install MySQL Client
           command: sudo apt-get update && sudo apt-get install -y mysql-client
       - run:
