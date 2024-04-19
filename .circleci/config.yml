@@ -38,7 +38,7 @@ commands:
           command: |
             composer install -n --prefer-dist
             cp .env.ci .env
-            mv config/database.yml.ci config/database.yml
+            mv config/database.ci.php config/database.php
             php artisan key:generate
           working_directory: src
   save-cache-composer:
