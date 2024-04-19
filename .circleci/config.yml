@@ -10,9 +10,10 @@ executors:
         environment:
           DB_HOST: mysql
           DB_CONNECTION: mysql_test
-          DB_USER: root
-          DB_PASSWORD: root
-          MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+          MYSQL_DATABASE: demo_test
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_USER: root
+          MYSQL_PASSWORD: root
         name: mysql
     working_directory: ~/repo
 
