@@ -1,45 +1,126 @@
 version: 2.1
 
-jobs:
-  build:
-    working_directory: ~/var/www
+executors:
+  laravel-circleci:
     docker:
-      - image: cimg/php:8.1.28-browsers
-      - image: cimg/mysql:8.0
-      - image: nginx:latest
+      - image: circleci/php:7.4-node-browsers
+      - image: circleci/mysql:5.7
     environment:
       - DB_CONNECTION: mysql_test
+    working_directory: ~/repo
+
+commands:
+  install-dockerize:
+    steps:
+      - run:
+          name: Install dockerize
+          command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+          environment:
+            DOCKERIZE_VERSION: v0.6.1
+  install-php-extensions:
+    steps:
+      - run:
+          name: Install PHP Exetensions
+          command: sudo docker-php-ext-install pdo_mysql
+          working_directory: src
+  restore-cache-composer:
+    steps:
+      - restore_cache:
+          key: v1-dependencies-{{ checksum "src/composer.json" }}
+  install-composer:
+    steps:
+      - run:
+          name: Install Composer
+          command: composer install -n --prefer-dist
+          working_directory: src
+  save-cache-composer:
+    steps:
+      - save_cache:
+          key: v1-dependencies-{{ checksum "src/composer.json" }}
+          paths:
+            - vendor
+  npm-ci:
+    steps:
+      - run:
+          name: npm CI
+          command: |
+            if [ ! -d node_modules ]; then
+              npm ci
+            fi
+          working_directory: src
+  restore-cache-npm:
+    steps:
+      - restore_cache:
+          key: npm-cache-{{ checksum "src/package-lock.json" }}
+  npm-run-dev:
+    steps:
+      - run:
+          name: Run npm
+          command: npm run dev
+          working_directory: src
+  save-cache-npm:
+    steps:
+      - save_cache:
+          key: npm-cache-{{ checksum "src/package-lock.json" }}
+          paths:
+            - node_modules
+  migration-seeding:
+    steps:
+      - run:
+          name: Migration & Seeding
+          command: php artisan migrate --seed
+          working_directory: src
+  test-unittest:
+    steps:
+      - run:
+          name: Run PHPUnit
+          command: vendor/bin/phpunit
+          working_directory: src
+
+jobs:
+  build:
+    executor:
+      name: laravel-circleci
     steps:
       - checkout
+      - install-dockerize
+      - install-php-extensions
+      - restore-cache-composer
+      - install-composer
+      - save-cache-composer
+      - restore-cache-npm
+      - npm-ci
+      - save-cache-npm
+      - npm-run-dev
+      - migration-seeding
+      - test-unittest
+  deploy:
+    docker:
+      - image: circleci/php:7.4-node-browsers
+    steps:
+      - checkout
+      - add_ssh_keys
       - run:
-          name: Create directory
-          command: mkdir -m 777 -p ~/var/www
-      - run: sudo composer self-update --1
-      - setup_remote_docker:
-          docker_layer_caching: true
-      - run:
-          name: Install Docker Compose
+          name: aws deploy
           command: |
-            sudo apt-get update
-            sudo apt-get install -y docker-compose
-            sed -i 's|./docker/nginx/default.conf|/docker/nginx|g' docker-compose.yml
-            sed -i 's|/etc/nginx/conf.d/default.conf|/etc/nginx/conf.d|g' docker-compose.yml
-      - run:
-          name: Wait for DB
-          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 3m
-      - run:
-          name: Start Nginx Container
-          command: |
-            docker run -d --name nginx_container -v /docker/nginx:/etc/nginx/conf.d -p 8081:80 nginx:latest
-      - run:
-          name: Build and Run Docker Compose
-          working_directory: ~/var/www/src
-          command: |
-            docker-compose up -d
-            docker-compose exec php bash -c "
-              composer install
-              cp var/www/src/.env.testing var/www/src/.env
-              php artisan key:generate
-              php artisan migrate:refresh --seed
-              php artisan test
-            "
+            ssh -o StrictHostKeyChecking=no -t ec2-user@${HOST_NAME} "cd grfl && \
+              git pull origin master && \
+              cd /var/www/grfl/src && \
+              composer install -n --no-dev --prefer-dist && \
+              npm ci && \
+              npm run prod && \
+              php artisan migrate --force && \
+              php artisan config:cache"
+
+workflows:
+  version: 2
+  build_deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
