@@ -38,7 +38,6 @@ commands:
           name: Install Composer
           command: |
             composer install -n --prefer-dist
-            cp .env.testing .env
             mv config/database.yml.ci config/database.yml
             php artisan key:generate
           working_directory: src
