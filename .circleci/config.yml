@@ -14,6 +14,7 @@ executors:
           DB_CONNECTION: mysql_test
           MYSQL_ROOT_HOST: "%"
           MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+          MYSQL_USER: root
         name: mysql
     working_directory: ~/repo
 
