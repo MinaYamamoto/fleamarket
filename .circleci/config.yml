@@ -3,7 +3,7 @@ version: 2.1
 executors:
   laravel-circleci:
     docker:
-      - image: circleci/php:7.4-node-browsers
+      - image: cimg/php:8.1.28-browsers
       - image: circleci/mysql:5.7
     environment:
       - DB_CONNECTION: mysql_test
