@@ -35,6 +35,7 @@ commands:
             composer install -n --prefer-dist
             cp .env.testing .env
             php artisan key:generate
+            cat .env
           working_directory: src
   save-cache-composer:
     steps:
@@ -71,7 +72,7 @@ commands:
     steps:
       - run:
           name: Migration & Seeding
-          command: yes | php artisan migrate --seed
+          command: yes | php artisan migrate
           working_directory: src
   test-unittest:
     steps:
