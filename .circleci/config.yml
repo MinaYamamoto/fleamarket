@@ -17,6 +17,12 @@ commands:
           command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
           environment:
             DOCKERIZE_VERSION: v0.6.1
+  install-php-extensions:
+    steps:
+      - run:
+          name: Install PHP Exetensions
+          command: sudo docker-php-ext-install pdo_mysql
+          working_directory: src
   restore-cache-composer:
     steps:
       - restore_cache:
@@ -62,7 +68,7 @@ commands:
     steps:
       - run:
           name: Migration & Seeding
-          command: php artisan migrate --seed
+          command: yes | php artisan migrate --seed
           working_directory: src
   test-unittest:
     steps:
@@ -78,6 +84,7 @@ jobs:
     steps:
       - checkout
       - install-dockerize
+      - install-php-extensions
       - restore-cache-composer
       - install-composer
       - save-cache-composer
