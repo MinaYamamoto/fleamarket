@@ -8,15 +8,10 @@ executors:
           DB_HOST: mysql
           DB_USER: root
           DB_PASSWORD: ""
-          APP_KEY: base64:TvwG3eAK/vz6wU6ehFqcGQOVyV7VQ1UJfyRqCFHN4ow=
-          APP_DEBUG: true
-          APP_URL: http://localhost
       - image: cimg/mysql:8.0
         environment:
           DB_HOST: mysql
           DB_CONNECTION: mysql_test
-          DB_PORT: 3306
-          DB_DATABASE: demo_test
           MYSQL_ROOT_HOST: "%"
           MYSQL_ALLOW_EMPTY_PASSWORD: "true"
         name: mysql
@@ -40,6 +35,8 @@ commands:
           name: Install Composer
           command: |
             composer install -n --prefer-dist
+            cp .env.testing .env
+            php artisan key:generate
           working_directory: src
   save-cache-composer:
     steps:
