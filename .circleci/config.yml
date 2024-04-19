@@ -7,12 +7,13 @@ executors:
         environment:
           DB_HOST: mysql
           DB_USER: root
-          DB_PASSWORD: root
+          DB_PASSWORD: ""
       - image: cimg/mysql:8.0
         environment:
           DB_HOST: mysql
           DB_CONNECTION: mysql_test
           MYSQL_ROOT_HOST: "%"
+          MYSQL_ALLOW_EMPTY_PASSWORD: "true"
         name: mysql
     working_directory: ~/repo
 
