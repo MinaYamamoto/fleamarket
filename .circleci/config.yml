@@ -7,6 +7,8 @@ executors:
       - image: cimg/mysql:8.0
     environment:
       - DB_CONNECTION: mysql_test
+      - MYSQL_USER: root
+      - MYSQL_PASSWORD: root
     working_directory: ~/repo
 
 commands:
