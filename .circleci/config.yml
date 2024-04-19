@@ -11,7 +11,8 @@ executors:
           DB_HOST: mysql
           DB_CONNECTION: mysql_test
           MYSQL_DATABASE: demo_test
-          MYSQL_ROOT_PASSWORD: root
+          MYSQL_USER: root
+          MYSQL_PASSWORD: root
         name: mysql
     working_directory: ~/repo
 
