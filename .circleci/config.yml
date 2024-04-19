@@ -4,7 +4,7 @@ executors:
   laravel-circleci:
     docker:
       - image: cimg/php:8.1.28-browsers
-      - image: circleci/mysql:5.7
+      - image: cimg/mysql:8.0
     environment:
       - DB_CONNECTION: mysql_test
     working_directory: ~/repo
@@ -17,12 +17,6 @@ commands:
           command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
           environment:
             DOCKERIZE_VERSION: v0.6.1
-  install-php-extensions:
-    steps:
-      - run:
-          name: Install PHP Exetensions
-          command: sudo docker-php-ext-install
-          working_directory: src
   restore-cache-composer:
     steps:
       - restore_cache:
@@ -96,7 +90,7 @@ jobs:
       - test-unittest
   deploy:
     docker:
-      - image: circleci/php:7.4-node-browsers
+      - image: cimg/php:8.1.28-browsers
     steps:
       - checkout
       - add_ssh_keys
