@@ -12,6 +12,7 @@ executors:
           DB_CONNECTION: mysql_test
           DB_USER: root
           DB_PASSWORD: root
+          MYSQL_ALLOW_EMPTY_PASSWORD: "true"
         name: mysql
     working_directory: ~/repo
 
@@ -86,7 +87,7 @@ commands:
     steps:
       - run:
           name: Migration & Seeding
-          command: yes | mysql -h mysql -u root -e  "php artisan migrate"
+          command: yes | php artisan migrate
           working_directory: src
   test-unittest:
     steps:
