@@ -35,7 +35,6 @@ commands:
             composer install -n --prefer-dist
             cp .env.testing .env
             php artisan key:generate
-            cat .env
           working_directory: src
   save-cache-composer:
     steps:
@@ -68,6 +67,12 @@ commands:
           key: npm-cache-{{ checksum "src/package-lock.json" }}
           paths:
             - node_modules
+  create-database:
+    steps:
+      - run:
+          name: Create MySQL Database
+          command: |
+            mysql -h mysql -u root -p root -e "CREATE DATABASE IF NOT EXISTS demo_test;"
   migration-seeding:
     steps:
       - run:
