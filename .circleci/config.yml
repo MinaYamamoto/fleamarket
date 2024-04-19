@@ -101,6 +101,7 @@ jobs:
       - npm-ci
       - save-cache-npm
       - npm-run-dev
+      - create-database
       - migration-seeding
       - test-unittest
   deploy:
