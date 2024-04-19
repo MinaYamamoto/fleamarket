@@ -75,7 +75,7 @@ commands:
       - run:
           name: Create MySQL Database
           command: |
-            mysql -h mysql -u root -p root -e "CREATE DATABASE IF NOT EXISTS demo_test;"
+            mysql -h mysql -u root -proot -e "CREATE DATABASE IF NOT EXISTS demo_test;"
   migration-seeding:
     steps:
       - run:
