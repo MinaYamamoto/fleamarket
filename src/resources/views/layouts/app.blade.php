@@ -19,7 +19,7 @@
                     @if(config('app.env')=== 'local')
                     <img class="header__logo-img" src="{{ Storage::url('logo.svg') }}" alt="logo">
                     @elseif(config('app.env')=== 'production')
-                    <img class="header__logo-img" src="{{ Storage::disk('s3')->url('https://fleamarket-bucket.s3.ap-northeast-1.amazonaws.com/logo.svg') }}" alt="logo">
+                    <img class="header__logo-img" src="{{ Storage::disk('s3')->url('/logo.svg') }}" alt="logo">
                     @endif
                 </h1>
                 @endcan
@@ -28,7 +28,7 @@
                     @if(config('app.env')=== 'local')
                     <a href="/"><img class="header__logo-img" src="{{ Storage::url('logo.svg') }}" alt="logo"></a>
                     @elseif(config('app.env')=== 'production')
-                    <a href="/"><img class="header__logo-img" src="{{ Storage::disk('s3')->url('https://fleamarket-bucket.s3.ap-northeast-1.amazonaws.com/logo.svg') }}" alt="logo"></a>
+                    <a href="/"><img class="header__logo-img" src="{{ Storage::disk('s3')->url('/logo.svg') }}" alt="logo"></a>
                     @endif
                 </h1>
                 @endcan
