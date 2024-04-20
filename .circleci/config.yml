@@ -121,7 +121,7 @@ jobs:
           name: aws deploy
           command: |
             ssh -o StrictHostKeyChecking=no -t ${USER_NAME}@${HOST_NAME} "cd /var/www/fleamarket && \
-              git pull origin master && \
+              git pull origin main && \
               cd /var/www/fleamarket/src && \
               composer install -n --no-dev --prefer-dist && \
               npm ci && \
