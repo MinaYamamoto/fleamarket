@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ConditionsTableSeed::class);
         $this->call(CategoriesTableSeed::class);
         $this->call(ContentsTableSeed::class);
-        $this->call(Category_contentsTable::class);
+        $this->call(Category_contentsTableSeed::class);
         $this->call(UsersTableSeed::class);
         $this->call(ItemsTableSeed::class);
         $this->call(CommentsTableSeed::class);
