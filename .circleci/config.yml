@@ -117,17 +117,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys
-      - run:
-          name: aws deploy
-          command: |
-            ssh -o StrictHostKeyChecking=no -t ${USER_NAME}@${HOST_NAME} "cd /var/www/fleamarket && \
-              git pull origin master && \
-              cd /var/www/fleamarket/src && \
-              composer install -n --no-dev --prefer-dist && \
-              npm ci && \
-              npm run prod && \
-              php artisan migrate --force && \
-              php artisan config:cache"
+      - run: ssh -o StrictHostKeyChecking=no -t ${USER_NAME}@${HOST_NAME} "cd /var/www/fleamarket && git pull origin master
 
 workflows:
   version: 2
