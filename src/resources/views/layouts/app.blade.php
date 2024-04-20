@@ -16,18 +16,28 @@
             <div class="header__logo">
                 @can('admin-authority')
                 <h1 class="header__logo-link">
+                    @if(config('app.env')=== 'local')
                     <img class="header__logo-img" src="{{ Storage::url('logo.svg') }}" alt="logo">
+                    @elseif(config('app.env')=== 'production')
+                    <img class="header__logo-img" src="{{ Storage::disk('s3')->url('https://fleamarket-bucket.s3.ap-northeast-1.amazonaws.com/logo.svg') }}" alt="logo">
+                    @endif
                 </h1>
                 @endcan
                 @can('user-authority')
                 <h1 class="header__logo-link">
+                    @if(config('app.env')=== 'local')
                     <a href="/"><img class="header__logo-img" src="{{ Storage::url('logo.svg') }}" alt="logo"></a>
+                    @elseif(config('app.env')=== 'production')
+                    <a href="/"><img class="header__logo-img" src="{{ Storage::disk('s3')->url('https://fleamarket-bucket.s3.ap-northeast-1.amazonaws.com/logo.svg') }}" alt="logo"></a>
+                    @endif
                 </h1>
                 @endcan
                 @guest
-                <h1 class="header__logo-link">
+                    @if(config('app.env')=== 'local')
                     <a href="/"><img class="header__logo-img" src="{{ Storage::url('logo.svg') }}" alt="logo"></a>
-                </h1>
+                    @elseif(config('app.env')=== 'production')
+                    <a href="/"><img class="header__logo-img" src="{{ Storage::disk('s3')->url('https://fleamarket-bucket.s3.ap-northeast-1.amazonaws.com/logo.svg') }}" alt="logo"></a>
+                    @endif
                 @endguest
             </div>
             @yield('header')
