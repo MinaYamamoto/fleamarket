@@ -15,7 +15,7 @@ class MylistsTableSeed extends Seeder
     public function run()
     {
         $param = [
-            'user_id' => '1',
+            'user_id' => '3',
             'item_id' => '1',
         ];
         DB::table('mylists')->insert($param);

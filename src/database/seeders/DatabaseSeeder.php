@@ -18,9 +18,17 @@ class DatabaseSeeder extends Seeder
         $this->call(ContentsTableSeed::class);
         $this->call(Category_contentsTableSeed::class);
         $this->call(UsersTableSeed::class);
-        $this->call(ItemsTableSeed::class);
+        if(app()->isLocal()){
+            $this->call(ItemsTableSeed::class);
+        } else {
+            $this->call(ItemsTableSeedEc2::class);
+        }
         $this->call(CommentsTableSeed::class);
-        $this->call(ProfilesTableSeed::class);
+        if(app()->isLocal()) {
+            $this->call(ProfilesTableSeed::class);
+        }else{
+            $this->call(ProfilesTableSeedEc2::class);
+        }
         $this->call(PurchasesTable::class);
     }
 }

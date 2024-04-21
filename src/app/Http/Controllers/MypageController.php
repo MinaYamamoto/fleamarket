@@ -23,9 +23,9 @@ class MypageController extends Controller
             $post_code='';
             $profile = new Profile();
             if(app()->isLocal()) {
-                $profile['profile_image'] = "/storage/kkrn_icon_user_1.svg";
+                $profile['profile_image'] = "/storage/profile.svg";
             } else {
-                $profile['profile_image'] = "/storage/kkrn_icon_user_1.svg";
+                $profile['profile_image'] = "https://fleamarket-bucket.s3.ap-northeast-1.amazonaws.com/profile.svg";
             }
         }
         return view('mypage',compact('items', 'purchases', 'profile'));
@@ -47,9 +47,9 @@ class MypageController extends Controller
             $new_profile['post_code'] = '';
             $new_profile['address'] = '未登録';
             if(app()->isLocal()) {
-                $new_profile['profile_image'] = "/storage/kkrn_icon_user_1.svg";
+                $new_profile['profile_image'] = "/storage/profile.svg";
             } else {
-                $new_profile['profile_image'] = "/storage/kkrn_icon_user_1.svg";
+                $new_profile['profile_image'] = "https://fleamarket-bucket.s3.ap-northeast-1.amazonaws.com/profile.svg";
             }
             Profile::create($new_profile);
         }

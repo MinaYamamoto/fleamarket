@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ItemsTableSeed extends Seeder
+class ItemsTableSeedEc2 extends Seeder
 {
     /**
      * Run the database seeds.
@@ -22,7 +22,7 @@ class ItemsTableSeed extends Seeder
             'brand_name' => 'テストブランド名',
             'explanation' => 'テスト商品の説明',
             'price' => '10000',
-            'image' => '/storage/sak0109-003.jpg'
+            'image' => 'https://fleamarket-bucket.s3.ap-northeast-1.amazonaws.com/sak0109-003.jpg'
         ];
         DB::table('items')->insert($param);
         $param = [
@@ -33,7 +33,7 @@ class ItemsTableSeed extends Seeder
             'brand_name' => '',
             'explanation' => 'TestItemの説明',
             'price' => '5000',
-            'image' => '/storage/ume0016-049.jpg'
+            'image' => 'https://fleamarket-bucket.s3.ap-northeast-1.amazonaws.com/ume0016-049.jpg'
         ];
         DB::table('items')->insert($param);
     }
