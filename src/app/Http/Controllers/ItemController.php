@@ -22,8 +22,7 @@ class ItemController extends Controller
         $user_id = Auth::id();
         $items = Item::all();
         $mylists = Mylist::where('user_id', $user_id)->get();
-        $purchases = Purchase::all();
-        return view('index', compact('items', 'mylists', 'purchases'));
+        return view('index', compact('items', 'mylists'));
     }
 
     public function search(Request $request)
