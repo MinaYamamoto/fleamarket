@@ -1,0 +1,23 @@
+@media screen and (min-width: 769px) {
+    .checkout {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .checkout__txt {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .checkout {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .checkout__txt {
+        font-size: 20px;
+    }
+}

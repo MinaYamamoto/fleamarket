@@ -105,11 +105,19 @@
     }
 
     .card__txt {
-        margin: -40px 0 0 0;
-        height: 25px;
+        margin: -15% 0 0 0;
+        height: 2vw;
         width: 45%;
         background-color: rgba(121, 121, 121, 0.6);
         border-radius: 0 10px 10px 0;
+    }
+
+    .card__txt-soldout {
+        color: #ff333f;
+        font-weight: bolder;
+        margin: 0;
+        font-size: 1.3vw;
+        text-align: center;
     }
 
     .card__txt-price {
@@ -117,6 +125,7 @@
         font-weight: bolder;
         margin: 0;
         text-align: center;
+        font-size: 1.3vw;
     }
 }
 
@@ -223,6 +232,14 @@
         width: 30%;
         background-color: rgba(121, 121, 121, 0.6);
         border-radius: 0 10px 10px 0;
+    }
+
+    .card__txt-soldout {
+        color: #ff333f;
+        font-weight: bolder;
+        margin: 0;
+        text-align: center;
+        font-size: 2.5vw;
     }
 
     .card__txt-price {

@@ -12,6 +12,7 @@ use App\Models\CategoryContent;
 use App\Models\Condition;
 use App\Models\Mylist;
 use App\Models\Comment;
+use App\Models\Purchase;
 use App\Http\Requests\ItemRequest;
 
 class ItemController extends Controller
@@ -21,13 +22,15 @@ class ItemController extends Controller
         $user_id = Auth::id();
         $items = Item::all();
         $mylists = Mylist::where('user_id', $user_id)->get();
-        return view('index', compact('items', 'mylists'));
+        $purchases = Purchase::all();
+        return view('index', compact('items', 'mylists', 'purchases'));
     }
 
     public function search(Request $request)
     {
         $user_id = Auth::id();
         $items = Item::KeywordSearch($request->keyword)->get();
+        $mylists = [];
         foreach($items as $item) {
             $mylists = Mylist::where('item_id', $item->id)->where('user_id', $user_id)->get();
         }
@@ -42,7 +45,8 @@ class ItemController extends Controller
         $content = Content::find($category_content_id->content_id);
         $mylists = Mylist::where('item_id', $request->item_id)->get();
         $comments = Comment::where('item_id', $request->item_id)->get();
-        return view('detail', compact('item', 'category', 'content', 'mylists', 'comments'));
+        $purchase = Purchase::where('item_id', $request->item_id)->first();
+        return view('detail', compact('item', 'category', 'content', 'mylists', 'comments' ,'purchase'));
     }
 
     public function sellIndex()

@@ -101,9 +101,15 @@
         </div>
         <form action="/purchase/{{$item['id']}}" method="get">
             @csrf
+            @if(is_null($purchase))
             <div class="form__button">
                 <button class="form__button-submit" type="submit">購入する</button>
             </div>
+            @else
+            <div class="form__button">
+                <button class="form__button-inactive" type="submit" disabled>SOLDOUT</button>
+            </div>
+            @endif
         </form>
         <div class="detail__item">
             <h2 class="detail__ttl">商品説明</h2>

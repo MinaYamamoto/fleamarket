@@ -157,6 +157,17 @@
         cursor: pointer;
     }
 
+    .form__button-inactive {
+        color: #fff;
+        background-color: #b4b0b0;
+        border: none;
+        border-radius: 3px;
+        font-size: 18px;
+        font-weight: 300;
+        height: 30px;
+        width: 300px;
+    }
+
     .detail__item-explanation {
         font-size: 12px;
         font-weight: normal;
@@ -338,6 +349,17 @@
         height: 30px;
         width: 100%;
         cursor: pointer;
+    }
+
+    .form__button-inactive {
+        color: #fff;
+        background-color: #b4b0b0;
+        border: none;
+        border-radius: 3px;
+        font-size: 18px;
+        font-weight: 300;
+        height: 30px;
+        width: 100%;
     }
 
     .detail__item-explanation {

@@ -23,6 +23,7 @@
                     <button class="form__button-link" type="submit">トップページへ戻る</button>
                 </div>
             </form>
+        </div>
     </main>
 </body>
 </html>
