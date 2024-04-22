@@ -129,8 +129,8 @@ class PurchaseController extends Controller
             $new_profile['post_code'] = '';
             $new_profile['address'] = '住所未登録';
             $new_profile['user_id'] = Auth::id();
-            if(app()->isLocal()) {
-                $new_profile['profile_image'] = "/storage/profile.png";
+            if(config('app.env') === 'local') {
+                $new_profile['profile_image'] = "/storage/profile.svg";
             } else {
                 $new_profile['profile_image'] = "https://fleamarket-bucket.s3.ap-northeast-1.amazonaws.com/profile.svg";
             }

@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Config;
 use Session;
 use Mockery;
 use Tests\TestCase;
@@ -242,20 +243,44 @@ class PurchaseTest extends TestCase
             'building' => null
         ]);
     }
+
     /** @test */
-    public function noAddress()
+    public function noAddressForLocal()
     {
+        Config::set('app.env', 'local');
         $response = $this->actingAs($this->userNoProfile)->post("/purchase/address/{$this->userNoProfile->id}",[
             'user_id' => $this->userNoProfile->id
         ]);
         $response->assertOk();
+        $envValue = config('app.env');
+        $this->assertEquals('local', $envValue);
         $profile = Profile::where('user_id', $this->userNoProfile->id)->first();
         $this->assertNotNull($profile);
         $this->assertDatabaseHas('profiles',[
             'post_code' => '',
             'address' => '住所未登録',
             'building' => null,
-            'profile_image' => "/storage/kkrn_icon_user_1.png"
+            'profile_image' => "/storage/profile.svg"
+        ]);
+    }
+
+    /** @test */
+    public function noAddressForS3()
+    {
+        Config::set('app.env', 'production');
+        $response = $this->actingAs($this->userNoProfile)->post("/purchase/address/{$this->userNoProfile->id}",[
+            'user_id' => $this->userNoProfile->id
+        ]);
+        $response->assertOk();
+        $envValue = config('app.env');
+        $this->assertEquals('production', $envValue);
+        $profile = Profile::where('user_id', $this->userNoProfile->id)->first();
+        $this->assertNotNull($profile);
+        $this->assertDatabaseHas('profiles',[
+            'post_code' => '',
+            'address' => '住所未登録',
+            'building' => null,
+            'profile_image' => "https://fleamarket-bucket.s3.ap-northeast-1.amazonaws.com/profile.svg"
         ]);
     }
 }

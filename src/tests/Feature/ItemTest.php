@@ -14,13 +14,11 @@ use App\Models\Content;
 use App\Models\CategoryContent;
 use App\Models\Condition;
 use App\Models\Item;
-use App\Models\Mylist;
 use App\Http\Requests\ItemRequest;
 use Database\Seeders\CategoriesTableSeed;
 use Database\Seeders\ContentsTableSeed;
 use Database\Seeders\Category_contentsTableSeed;
 use Database\Seeders\ConditionsTableSeed;
-use Database\Seeders\MylistsTableSeed;
 class ItemTest extends TestCase
 {
     use DatabaseMigrations;
@@ -69,7 +67,6 @@ class ItemTest extends TestCase
             'price' => '5000',
             'image' => '/storage/sak0109-003.jpg'
         ]);
-        $this->seed(MylistsTableSeed::class);
     }
 
     /** @test */

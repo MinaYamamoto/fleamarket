@@ -13,6 +13,7 @@ use App\Models\CategoryContent;
 use App\Models\Condition;
 use App\Models\Item;
 use App\Models\Comment;
+use App\Models\Profile;
 use App\Http\Requests\CommentRequest;
 use Database\Seeders\CategoriesTableSeed;
 use Database\Seeders\ContentsTableSeed;
@@ -63,10 +64,22 @@ class CommentTest extends TestCase
             'item_id' => '1',
             'comment' => 'テストコメント'
         ]);
+        $this->comment = Comment::create([
+            'user_id' => '2',
+            'item_id' => '1',
+            'comment' => '購入者コメント'
+        ]);
+        $this->profile = Profile::create([
+            'user_id' => '1',
+            'post_code' => '1234567',
+            'address' => 'テスト用住所登録',
+            'building' => 'テスト用建物名登録',
+            'profile_image' => '/storage/sak0109-003.jpg'
+        ]);
     }
 
     /** @test */
-    public function route()
+    public function index()
     {
         $response = $this->actingAs($this->userPurchase)->get("/comment/{$this->item->id}");
         $response->assertStatus(200)
@@ -75,12 +88,14 @@ class CommentTest extends TestCase
         ->assertSee($this->item->brand_name)
         ->assertSee(number_format($this->item->price))
         ->assertSee($this->item->image)
+        ->assertSee($this->profile->image)
+        ->assertSee($this->userPurchase->name)
+        ->assertSee($this->userSell->name)
         ->assertSee($this->comment->comment);
-
     }
 
     /** @test */
-    public function Store()
+    public function store()
     {
         $response = $this->actingAs($this->userPurchase)->post("/comment/{$this->item->id}",[
             'user_id' => $this->userPurchase->id,

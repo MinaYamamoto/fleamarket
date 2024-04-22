@@ -22,7 +22,7 @@ class MypageController extends Controller
         if(is_null($profile)){
             $post_code='';
             $profile = new Profile();
-            if(app()->isLocal()) {
+            if(config('app.env') === 'local') {
                 $profile['profile_image'] = "/storage/profile.svg";
             } else {
                 $profile['profile_image'] = "https://fleamarket-bucket.s3.ap-northeast-1.amazonaws.com/profile.svg";
@@ -45,8 +45,8 @@ class MypageController extends Controller
         if(is_null($profile_check)){
             $new_profile['user_id'] = $user_id;
             $new_profile['post_code'] = '';
-            $new_profile['address'] = '未登録';
-            if(app()->isLocal()) {
+            $new_profile['address'] = '住所未登録';
+            if(config('app.env') === 'local') {
                 $new_profile['profile_image'] = "/storage/profile.svg";
             } else {
                 $new_profile['profile_image'] = "https://fleamarket-bucket.s3.ap-northeast-1.amazonaws.com/profile.svg";
@@ -64,7 +64,7 @@ class MypageController extends Controller
         if(request('profile_image')) {
             $file = $request->file('profile_image');
             $file_name = $file->getClientOriginalName();
-            if(app()->isLocal()) {
+            if(config('app.env') === 'local') {
                 $path = Storage::putFileAs('public', $file, $file_name);
                 $profile['profile_image'] = Storage::url($path);
             } else {

@@ -58,7 +58,7 @@ class ItemController extends Controller
         if(request('image')) {
             $file = $request->file('image');
             $file_name = $file->getClientOriginalName();
-            if(app()->isLocal()) {
+            if(config('app.env') === 'local') {
                 $path = Storage::putFileAs('public', $file, $file_name);
                 $newItem['image'] = Storage::url($path);
             } else {

@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 use App\Models\User;
@@ -92,7 +93,7 @@ class MypageTest extends TestCase
         /** @test */
     public function getProfileIndex()
     {
-        $response = $this->actingAs($this->myPageUser)->get("/mypage/profile/{$this->myPageUser}");
+        $response = $this->actingAs($this->myPageUser)->get("/mypage/profile/{$this->myPageUser->id}");
         $response->assertOk()
         ->assertViewIs('profile')
         ->assertSee($this->myPageUser->name)
@@ -103,12 +104,89 @@ class MypageTest extends TestCase
     }
 
     /** @test */
-    public function profileUpdate()
+    public function profilePostForLocal()
+    {
+        Config::set('app.env', 'local');
+        $envValue = config('app.env');
+        $this->assertEquals('local', $envValue);
+        $response = $this->actingAs($this->user)->post("/mypage/profile/{$this->user->id}",[
+            'user_id' => $this->user->id
+        ]);
+        $response->assertOk();
+        $profile = Profile::where('user_id', $this->user->id)->first();
+        $this->assertNotNull($profile);
+        $this->assertDatabaseHas('profiles',[
+            'post_code' => '',
+            'address' => '住所未登録',
+            'building' => null,
+            'profile_image' => "/storage/profile.svg"
+        ]);
+    }
+
+    /** @test */
+    public function profilePostForS3()
+    {
+        Storage::fake('s3');
+        Config::set('app.env', 'production');
+        $envValue = config('app.env');
+        $this->assertEquals('production', $envValue);
+        $response = $this->actingAs($this->user)->post("/mypage/profile/{$this->user->id}",[
+            'user_id' => $this->user->id
+        ]);
+        $response->assertOk();
+        $profile = Profile::where('user_id', $this->user->id)->first();
+        $this->assertNotNull($profile);
+        $this->assertDatabaseHas('profiles',[
+            'post_code' => '',
+            'address' => '住所未登録',
+            'building' => null,
+            'profile_image' => "https://fleamarket-bucket.s3.ap-northeast-1.amazonaws.com/profile.svg"
+        ]);
+    }
+
+    /** @test */
+    public function profileUpdateForLocal()
     {
         Storage::fake('public');
+        $file = UploadedFile::fake()->image('test-image.jpg');
+        Config::set('app.env', 'local');
+        $envValue = config('app.env');
+        $this->assertEquals('local', $envValue);
+        $response = $this->actingAs($this->myPageUser)->patch("/mypage/profile/{$this->myPageUser}",[
+            'user_id' => $this->myPageUser->id,
+            'profile_id' => $this->profile->id,
+            'name' => 'Change Name',
+            'profile_image' => $file,
+            'post_code' => 1234567,
+            'address' => 'TestAddress',
+            'building' => null
+        ]);
+        $response->assertStatus(302);
+
+        $profile = Profile::where('user_id', $this->myPageUser->id)->first();
+        $this->assertNotNull($profile);
+        $this->assertDatabaseHas('profiles',[
+            'profile_image' => '/storage/test-image.jpg',
+            'post_code' => 1234567,
+            'address' => 'TestAddress',
+            'building' => null
+        ]);
+        $user = profile::find($this->myPageUser->id);
+        $this->assertNotNull($user);
+        $this->assertDatabaseHas('users',[
+            'name' => 'Change Name',
+        ]);
+    }
+
+    /** @test */
+    public function profileUpdateForS3()
+    {
         Storage::fake('s3');
         $file = UploadedFile::fake()->image('test-image.jpg');
-        $response = $this->actingAs($this->myPageUser)->patch("/mypage/profile/{$this->myPageUser}",[
+        Config::set('app.env', 'production');
+        $envValue = config('app.env');
+        $this->assertEquals('production', $envValue);
+        $response = $this->actingAs($this->myPageUser)->patch("/mypage/profile/{$this->myPageUser->id}",[
             'user_id' => $this->myPageUser->id,
             'profile_id' => $this->profile->id,
             'name' => 'Change Name',

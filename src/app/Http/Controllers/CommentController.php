@@ -21,10 +21,10 @@ class CommentController extends Controller
         $profile = Profile::where('user_id', $user_id)->first();
         if(is_null($profile)){
             $profile = new Profile();
-            if(app()->isLocal()) {
-                $profile['profile_image'] = "/storage/kkrn_icon_user_1.svg";
+            if(config('app.env') === 'local') {
+                $profile['profile_image'] = "/storage/profile.svg";
             } else {
-                $profile['profile_image'] = "/storage/kkrn_icon_user_1.svg";
+                $profile['profile_image'] = "https://fleamarket-bucket.s3.ap-northeast-1.amazonaws.com/profile.svg";
             }
         }
         return view('comment',compact('item','mylists','comments','profile'));
