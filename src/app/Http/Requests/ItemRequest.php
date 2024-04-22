@@ -27,7 +27,7 @@ class ItemRequest extends FormRequest
             'category_content_id' => 'required',
             'condition_id' => 'required',
             'name' => 'required|string|max:255',
-            'brand_name' => 'string|max:255',
+            'brand_name' => 'nullable|string|max:255',
             'explanation' => 'required|string|max:255',
             'price' => 'required|integer',
             'image' => 'required|mimes:jpg,jpeg,png|max:10240'

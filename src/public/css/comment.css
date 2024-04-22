@@ -202,8 +202,9 @@
         margin-bottom: 20px;
     }
 
-    .comment__content-p {
+    .comment__content-txt {
         margin: 0;
+        padding: 3px;
         font-size: 13px;
     }
 
@@ -440,8 +441,9 @@
         margin-bottom: 20px;
     }
 
-    .comment__content-p {
+    .comment__content-txt {
         margin: 0;
+        padding: 3px;
         font-size: 13px;
     }
 

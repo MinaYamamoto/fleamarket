@@ -22,7 +22,7 @@ class ItemsTableSeedEc2 extends Seeder
             'brand_name' => 'テストブランド名',
             'explanation' => 'テスト商品の説明',
             'price' => '10000',
-            'image' => 'https://fleamarket-bucket.s3.ap-northeast-1.amazonaws.com/sak0109-003.jpg'
+            'image' => 'https://fleamarket-bucket.s3.ap-northeast-1.amazonaws.com/jewellery.jpg'
         ];
         DB::table('items')->insert($param);
         $param = [
@@ -33,7 +33,7 @@ class ItemsTableSeedEc2 extends Seeder
             'brand_name' => '',
             'explanation' => 'TestItemの説明',
             'price' => '5000',
-            'image' => 'https://fleamarket-bucket.s3.ap-northeast-1.amazonaws.com/ume0016-049.jpg'
+            'image' => 'https://fleamarket-bucket.s3.ap-northeast-1.amazonaws.com/shoes.jpg'
         ];
         DB::table('items')->insert($param);
     }

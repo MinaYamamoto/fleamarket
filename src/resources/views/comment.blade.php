@@ -103,7 +103,7 @@
                 @endif
             </div>
             <div class="comment__content">
-                <p class="comment__content-p">{{$comment->comment}}</p>
+                <pre class="comment__content-txt">{{$comment->comment}}</pre>
             </div>
             @elseif(isset($comment))
             <div class="comment__user">
@@ -121,7 +121,7 @@
                 </div>
             </div>
             <div class="comment__content">
-                <p class="comment__content-p">{{$comment->comment}}</p>
+                <pre class="comment__content-txt">{{$comment->comment}}</pre>
             </div>
             @endif
             @endforeach
