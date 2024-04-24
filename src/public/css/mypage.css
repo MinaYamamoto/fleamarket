@@ -149,9 +149,9 @@
     }
 
     .card__txt {
-        margin: -40px 0 0 0;
-        height: 25px;
-        width: 40%;
+        margin: -15% 0 0 0;
+        height: 2vw;
+        width: 45%;
         background-color: rgba(121, 121, 121, 0.6);
         border-radius: 0 10px 10px 0;
     }
@@ -161,6 +161,14 @@
         font-weight: bolder;
         margin: 0;
         text-align: center;
+    }
+
+    .card__item-soldout {
+        color: #ff333f;
+        font-weight: bolder;
+        margin: 0;
+        text-align: center;
+        font-size: 1.2vw;
     }
 }
 
@@ -304,15 +312,25 @@
     }
 
     .card__txt {
+        position: absolute;
+        z-index: 10;
         margin: -6.5vw 0 20px 30px;
-        height: 1.vw;
-        width: 30%;
+        height: 4vw;
+        width: 25%;
         background-color: rgba(121, 121, 121, 0.6);
         border-radius: 0 10px 10px 0;
     }
 
     .card__item-price {
         color: #fff;
+        font-weight: bolder;
+        margin: 0;
+        text-align: center;
+        font-size: 2.8vw;
+    }
+
+    .card__item-soldout {
+        color: #ff333f;
         font-weight: bolder;
         margin: 0;
         text-align: center;

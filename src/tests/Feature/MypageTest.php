@@ -16,6 +16,7 @@ use App\Models\CategoryContent;
 use App\Models\Condition;
 use App\Models\Item;
 use App\Models\Profile;
+use App\Models\Purchase;
 use App\Http\Requests\MypageRequest;
 use Database\Seeders\CategoriesTableSeed;
 use Database\Seeders\ContentsTableSeed;
@@ -77,6 +78,10 @@ class MypageTest extends TestCase
             'price' => '5000',
             'image' => '/storage/sak0109-003.jpg'
         ]);
+        $this->purchase = Purchase::create([
+            'user_id' => '1',
+            'item_id' => '2'
+        ]);
     }
     /** @test */
     public function getIndex()
@@ -87,7 +92,8 @@ class MypageTest extends TestCase
         ->assertSee($this->myPageUser->name)
         ->assertSee($this->profile->profile_image)
         ->assertSee($this->sellItem->image, $this->purchaseItem->image)
-        ->assertSee(number_format($this->sellItem->price), number_format($this->purchaseItem->price));
+        ->assertSee(number_format($this->sellItem->price))
+        ->assertSee('SOLDOUT');
     }
 
         /** @test */

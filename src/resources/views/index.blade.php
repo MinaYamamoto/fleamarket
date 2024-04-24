@@ -71,9 +71,15 @@
         <div class="card__item">
             <a href="/item/{{$mylist->item_id}}"><img class="card__img" src="{{$mylist ['item'] ['image']}}" alt="item"></a>
         </div>
+        @if(is_null($mylist->item->purchase))
         <div class="card__txt">
             <p class="card__txt-price">&yen;{{number_format($mylist->item->price) }}</p>
         </div>
+        @else
+        <div class="card__txt">
+            <p class="card__txt-soldout">SOLDOUT</p>
+        </div>
+        @endif
     </div>
     @endforeach
 </div>

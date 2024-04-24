@@ -14,6 +14,7 @@ use App\Models\Content;
 use App\Models\CategoryContent;
 use App\Models\Condition;
 use App\Models\Item;
+use App\Models\Purchase;
 use App\Http\Requests\ItemRequest;
 use Database\Seeders\CategoriesTableSeed;
 use Database\Seeders\ContentsTableSeed;
@@ -67,6 +68,10 @@ class ItemTest extends TestCase
             'price' => '5000',
             'image' => '/storage/sak0109-003.jpg'
         ]);
+        $this->purchase = Purchase::create([
+            'user_id' => '1',
+            'item_id' => '2'
+        ]);
     }
 
     /** @test */
@@ -75,7 +80,8 @@ class ItemTest extends TestCase
         $response = $this->get(route('index'));
         $response->assertOk()
         ->assertSee($this->firstItem->image, $this->secondItem->image)
-        ->assertSee(number_format($this->firstItem->price), number_format($this->secondItem->price));
+        ->assertSee('SOLDOUT')
+        ->assertSee(number_format($this->firstItem->price));
     }
 
     /** @test */
@@ -97,6 +103,27 @@ class ItemTest extends TestCase
         ->assertSee($this->content->name)
         ->assertSee($this->firstItem->category_content_id)
         ->assertSee($this->firstItem->condition->name);
+    }
+
+    /** @test */
+    public function getPurchaseDetail()
+    {
+        $category_content_id = CategoryContent::find($this->secondItem->category_content_id);
+        $this->category = Category::find($category_content_id->category_id);
+        $this->content = Content::find($category_content_id->content_id);
+
+        $response = $this->get("/item/{$this->secondItem->id}");
+        $response->assertOk()
+        ->assertViewIs('detail')
+        ->assertSee($this->secondItem->name)
+        ->assertSee($this->secondItem->brand_name)
+        ->assertSee('SOLDOUT')
+        ->assertSee($this->secondItem->explanation)
+        ->assertSee($this->secondItem->image)
+        ->assertSee($this->category->name)
+        ->assertSee($this->content->name)
+        ->assertSee($this->secondItem->category_content_id)
+        ->assertSee($this->secondItem->condition->name);
     }
 
     /** @test */

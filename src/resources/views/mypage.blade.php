@@ -56,9 +56,15 @@
             <div class="card__item">
                 <a href="/item/{{$item->id}}"><img class="card__img" src="{{ $item->image }}" alt="item"></a>
             </div>
+            @if(is_null($item->purchase))
             <div class="card__txt">
                 <p class="card__item-price">&yen;{{number_format($item->price) }}</p>
             </div>
+            @else
+            <div class="card__txt">
+                <p class="card__item-soldout">SOLDOUT</p>
+            </div>
+            @endif
         </div>
         @endforeach
     </div>
@@ -69,7 +75,7 @@
                 <a href="/item/{{ $purchase->item->id }}"><img class="card__img" src="{{ $purchase->item->image }}" alt="item"></a>
             </div>
             <div class="card__txt">
-                <p class="card__item-price">&yen;{{number_format($purchase->item->price) }}</p>
+                <p class="card__item-soldout">SOLDOUT</p>
             </div>
         </div>
         @endforeach
