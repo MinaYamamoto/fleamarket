@@ -84,6 +84,7 @@ class CommentTest extends TestCase
         $response = $this->actingAs($this->userPurchase)->get("/comment/{$this->item->id}");
         $response->assertStatus(200)
         ->assertViewIs('comment')
+        ->assertSee('削除する')
         ->assertSee($this->item->name)
         ->assertSee($this->item->brand_name)
         ->assertSee(number_format($this->item->price))
@@ -110,6 +111,24 @@ class CommentTest extends TestCase
         ]);
     }
 
+    /** @test */
+    public function destroy()
+    {
+        $this->delete_comment = Comment::create([
+            'user_id' => $this->userPurchase->id,
+            'item_id' => $this->item->id,
+            'comment' => 'Delete'
+        ]);
+        $response = $this->actingAs($this->userPurchase)->delete("/comment/{$this->item->id}",[
+            'id' => $this->delete_comment->id,
+        ]);
+        $response->assertStatus(302);
+        $this->assertDeleted('comments', [
+            'user_id' => $this->userPurchase->id,
+            'item_id' => $this->item->id,
+            'comment' => 'Delete'
+        ]);
+    }
     /**
      *  @test
      *  @dataProvider dataComment

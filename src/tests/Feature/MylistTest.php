@@ -47,7 +47,7 @@ class MylistTest extends TestCase
             'brand_name' => 'テストブランド名',
             'explanation' => 'テスト商品の説明',
             'price' => '10000',
-            'image' => '/storage/sak0109-003.jpg'
+            'image' => '/storage/ai-generated-8674235_1280.png'
         ]);
     }
 

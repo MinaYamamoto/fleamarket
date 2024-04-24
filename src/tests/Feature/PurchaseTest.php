@@ -50,7 +50,7 @@ class PurchaseTest extends TestCase
             'post_code' => '1234567',
             'address' => 'テスト用住所登録',
             'building' => 'テスト用建物名登録',
-            'profile_image' => '/storage/sak0109-003.jpg'
+            'profile_image' => '/storage/ai-generated-8674235_1280.png'
         ]);
         $this->seed(CategoriesTableSeed::class);
         $this->seed(ContentsTableSeed::class);
@@ -64,7 +64,7 @@ class PurchaseTest extends TestCase
             'brand_name' => 'テストブランド名',
             'explanation' => 'テスト商品の説明',
             'price' => '10000',
-            'image' => '/storage/sak0109-003.jpg'
+            'image' => '/storage/ai-generated-8674235_1280.png'
         ]);
     }
 

@@ -14,7 +14,7 @@ WEB アプリ URL：http://35.74.207.200/
 
 ## 他のリポジトリ
 
-GitHub（https）：
+GitHub（https）：https://github.com/MinaYamamoto/fleamarket.git
 
 AWS 　 S3
 ・名前：fleamarket-bucket
@@ -75,6 +75,8 @@ AWS 　 S3
 
 ## テーブル設計
 
+![alt text](image-2.png)
+
 ## ER 図
 
 ![alt text](image-1.png)
@@ -132,12 +134,16 @@ php artisan db:seed
 8.シンボリックリンクを作成  
 php artisan storage:link
 
-9.「reservation」配下にある以下ファイルを storage>app>public フォルダに格納  
-　 sushi.jpg  
-　 yakiniku.jpg  
-　 ramen.jpg  
-　 italian.jpg  
-　 izakaya.jpg
+9.「fleamarket」配下にある以下ファイルを storage>app>public フォルダに格納  
+　 ai-generated-8674235_1280.png  
+　 checkmate-1511866_1280.jpg  
+　 clover-8108105_1280.jpg  
+　 jewellery.jpg  
+　 logo.svg  
+　 profile.svg  
+　 puzzle-3223941_1280.jpg  
+　 scarf.jpg  
+　 shoes.jpg
 
 ## その他記述
 
@@ -161,7 +167,7 @@ _ユーザ２（主に購入者）_
 
 ・AWS へのデプロイは以下を使用しています。  
 _CicleCi_  
-　　名前：COACHTECH
+　　プロジェクト名：coachtech
 
 ・メールの確認には mailtrap を使用しています。  
 　　 URL：https://mailtrap.io/email-sandbox/

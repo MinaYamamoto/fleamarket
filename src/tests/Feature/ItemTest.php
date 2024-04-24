@@ -56,7 +56,7 @@ class ItemTest extends TestCase
             'brand_name' => 'テストブランド名',
             'explanation' => 'テスト商品の説明',
             'price' => '10000',
-            'image' => '/storage/sak0109-003.jpg'
+            'image' => '/storage/ai-generated-8674235_1280.png'
         ]);
         $this->secondItem = Item::create([
             'user_id' => '2',
@@ -66,7 +66,7 @@ class ItemTest extends TestCase
             'brand_name' => '',
             'explanation' => 'TestItemの説明',
             'price' => '5000',
-            'image' => '/storage/sak0109-003.jpg'
+            'image' => '/storage/ai-generated-8674235_1280.png'
         ]);
         $this->purchase = Purchase::create([
             'user_id' => '1',
