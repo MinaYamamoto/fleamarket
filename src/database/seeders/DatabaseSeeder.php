@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
         }else{
             $this->call(ProfilesTableSeedEc2::class);
         }
-        $this->call(PurchasesTable::class);
+        $this->call(PurchasesTableSeed::class);
+        $this->call(MylistsTableSeed::class);
     }
 }

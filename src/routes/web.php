@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function() {
     Route::delete('/mylist/{item_id}', [MylistController::class, 'destroy']);
     Route::get('/comment/{item_id}', [CommentController::class, 'index']);
     Route::post('/comment/{item_id}', [CommentController::class, 'store']);
+    Route::delete('/comment/{item_id}', [CommentController::class, 'destroy']);
 });
 
 Route::group(['middleware' => ['auth', 'can:admin-authority']], function() {

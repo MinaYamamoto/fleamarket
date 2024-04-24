@@ -202,10 +202,22 @@
         margin-bottom: 20px;
     }
 
+    .comment-delete__button {
+        margin-left: 10px;
+    }
+
+    .comment-delete__button-submit {
+        color: #88888a;
+        border: none;
+        background-color: #fff;
+        cursor: pointer;
+    }
+
     .comment__content-txt {
         margin: 0;
         padding: 3px;
         font-size: 13px;
+        white-space: pre-wrap;
     }
 
     .comment__post {
@@ -441,10 +453,22 @@
         margin-bottom: 20px;
     }
 
+    .comment-delete__button {
+        margin-left: 10px;
+    }
+
+    .comment-delete__button-submit {
+        color: #88888a;
+        border: none;
+        background-color: #fff;
+        cursor: pointer;
+    }
+
     .comment__content-txt {
         margin: 0;
         padding: 3px;
         font-size: 13px;
+        white-space: pre-wrap;
     }
 
     .comment__post {

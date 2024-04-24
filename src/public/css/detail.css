@@ -168,9 +168,14 @@
         width: 300px;
     }
 
-    .detail__item-explanation {
+    .detail-item__explanation {
+        width: 70%;
+    }
+
+    .detail-item__explanation-txt {
         font-size: 12px;
         font-weight: normal;
+        white-space: pre-wrap;
     }
 
     .detail__flex {
@@ -362,9 +367,14 @@
         width: 100%;
     }
 
-    .detail__item-explanation {
+    .detail-item__explanation {
+        width: 100%;
+    }
+
+    .detail-item__explanation-txt {
         font-size: 12px;
         font-weight: normal;
+        white-space: pre-wrap;
     }
 
     .detail__flex {

@@ -113,8 +113,8 @@
         </form>
         <div class="detail__item">
             <h2 class="detail__ttl">商品説明</h2>
-            <div>
-                <pre class="detail__item-explanation">{{$item->explanation}}</pre>
+            <div class="detail-item__explanation">
+                <pre class="detail-item__explanation-txt">{{$item->explanation}}</pre>
             </div>
         </div>
         <div class="detail__item">

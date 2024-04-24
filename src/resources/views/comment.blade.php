@@ -101,6 +101,18 @@
                     <img class="comment__seller-img" src="{{$comment->user->profile->profile_image}}">
                 </div>
                 @endif
+                @if (optional(auth()->user())->id === $comment->user_id)
+                <form class="comment-delete__form" action="/comment/{item_id}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <div class="comment-delete__button">
+                        <button class="comment-delete__button-submit" type="submit">
+                            削除する
+                        </button>
+                    <input type="hidden" name="id" value="{{$comment->id}}">
+                    </div>
+                </form>
+                @endif
             </div>
             <div class="comment__content">
                 <pre class="comment__content-txt">{{$comment->comment}}</pre>
@@ -119,6 +131,18 @@
                 <div class="comment__user-name">
                     <span class="user-name">{{$comment['user']['name']}}</span>
                 </div>
+                @if (optional(auth()->user())->id === $comment->user_id)
+                <form class="comment-delete__form" action="/comment/{item_id}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <div class="comment-delete__button">
+                        <button class="comment-delete__button-submit" type="submit">
+                            削除する
+                        </button>
+                    <input type="hidden" name="id" value="{{$comment->id}}">
+                    </div>
+                </form>
+                @endif
             </div>
             <div class="comment__content">
                 <pre class="comment__content-txt">{{$comment->comment}}</pre>
