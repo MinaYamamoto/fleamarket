@@ -23,4 +23,7 @@ RUN apt-get update \
     && pecl install imagick \
     && docker-php-ext-enable imagick
 
+RUN apt-get update \
+    && apt-get install -y --fix-missing npm
+
 WORKDIR /var/www

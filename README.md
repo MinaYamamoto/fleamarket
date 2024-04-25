@@ -119,8 +119,7 @@ MAIL_ENCRYPTION=mailtrip の SMTP Settings タブより設定値をコピー
 MAIL_FROM_ADDRESS=mailtrip の SMTP Settings タブより設定値をコピー  
 STRIPE_KEY=stripe の公開可能キー  
 STRIPE_SECRET=stripe のシークレットキー  
-STRIPE_BASIC_ID=stripe にて任意の商品カタログの APIID  
-CASHIER_CURRENCY=jpy
+STRIPE_BASIC_ID=stripe にて任意の商品カタログの APIID
 
 5.アプリケーション起動のためのキーを生成  
 php artisan key:generate

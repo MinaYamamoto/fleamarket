@@ -42,9 +42,7 @@ class ItemsTableSeed extends Seeder
             'condition_id' => '6',
             'name' => 'チェス',
             'brand_name' => '',
-            'explanation' => 'チェス
-                            商品説明登録
-                            改行あり',
+            'explanation' => 'チェス'."\n".'商品説明登録'."\n".'改行あり',
             'price' => '20000',
             'image' => '/storage/checkmate-1511866_1280.jpg'
         ];
@@ -66,9 +64,7 @@ class ItemsTableSeed extends Seeder
             'condition_id' => '4',
             'name' => 'チェス（テレビゲーム）',
             'brand_name' => '',
-            'explanation' => 'チェス
-                            テレビゲーム
-                            商品説明',
+            'explanation' => 'チェス'."\n".'テレビゲーム'."\n".'商品説明',
             'price' => '6000',
             'image' => '/storage/checkmate-1511866_1280.jpg'
         ];

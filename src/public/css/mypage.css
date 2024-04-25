@@ -161,6 +161,7 @@
         font-weight: bolder;
         margin: 0;
         text-align: center;
+        font-size: 1.3vw;
     }
 
     .card__item-soldout {
