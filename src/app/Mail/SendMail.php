@@ -33,6 +33,6 @@ class SendMail extends Mailable
         $mail_name = $this->name;
         $mail_subject = $this->subject;
         $mail_txt = $this->txt;
-        return $this->view('mail.body')->from('mailcatcher@example.com')->subject($mail_subject)->with(['name' => $mail_name, 'txt' => $mail_txt]);
+        return $this->view('mail.body')->from('motitama1106@gmail.com')->subject($mail_subject)->with(['name' => $mail_name, 'txt' => $mail_txt]);
     }
 }
