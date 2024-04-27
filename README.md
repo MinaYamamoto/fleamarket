@@ -16,7 +16,7 @@ WEB アプリ URL：http://35.74.207.200/
 
 GitHub（https）：https://github.com/MinaYamamoto/fleamarket.git
 
-AWS 　 S3
+AWS 　 S3  
 ・名前：fleamarket-bucket
 
 ## 機能一覧
@@ -54,8 +54,6 @@ AWS 　 S3
 ・商品購入機能（カード決済、コンビニ決済、銀行決済）
 
 ・出品機能
-
-・商品コメント削除機能
 
 **管理者機能**
 
@@ -150,7 +148,7 @@ php artisan db:seed
 12.シンボリックリンクを作成  
 php artisan storage:link
 
-13.fleamarket>img_public 配下にある以下ファイルを storage>app>public フォルダに格納  
+13.fleamarket>img_public 配下にある以下ファイルを src>storage>app>public フォルダに格納  
 　 ai-generated-8674235_1280.png  
 　 checkmate-1511866_1280.jpg  
 　 clover-8108105_1280.jpg  
@@ -186,7 +184,9 @@ _CicleCi_
 　　プロジェクト名：coachtech
 
 ・メールの確認には mailtrap を使用しています。  
-　　 URL：https://mailtrap.io/email-sandbox/
+　　 URL：https://mailtrap.io/email-sandbox/  
+　　環境構築前にログインし、メール設定に必要な情報を確認してください。
 
 ・決済には stripe を使用しています。  
-　　 URL：https://dashboard.stripe.com/
+　　 URL：https://dashboard.stripe.com/  
+　　環境構築前にログインし、メール設定に必要な情報を確認してください。
