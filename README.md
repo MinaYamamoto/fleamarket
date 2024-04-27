@@ -120,35 +120,19 @@ MAIL_FROM_ADDRESS=mailtrip の SMTP Settings タブより設定値をコピー
 STRIPE_KEY=stripe の公開可能キー  
 STRIPE_SECRET=stripe のシークレットキー
 
-5.「.env」ファイルをコピーして「.env.testing」ファイルを作成  
-cp .env .env.testing
-
-6.「.env.testing」ファイルの環境変数を変更  
-DB_DATABASE=demo_test  
-DB_USERNAME=root  
-DB_PASSWORD=root
-
-7.「.env」ファイルをコピーして「.env.ci」ファイルを作成  
-cp .env .env.ci
-
-8.「.env.ci」ファイルの環境変数を変更  
-DB_DATABASE=demo_test  
-DB_USERNAME=test  
-DB_PASSWORD=password
-
-9.アプリケーション起動のためのキーを生成  
+5.アプリケーション起動のためのキーを生成  
 php artisan key:generate
 
-10.マイグレーションを実行  
+6.マイグレーションを実行  
 php artisan migrate
 
-11.データベースへテスト用の初期データを投入  
+7.データベースへテスト用の初期データを投入  
 php artisan db:seed
 
-12.シンボリックリンクを作成  
+8.シンボリックリンクを作成  
 php artisan storage:link
 
-13.fleamarket>img_public 配下にある以下ファイルを src>storage>app>public フォルダに格納  
+9.fleamarket>img_public 配下にある以下ファイルを src>storage>app>public フォルダに格納  
 　 ai-generated-8674235_1280.png  
 　 checkmate-1511866_1280.jpg  
 　 clover-8108105_1280.jpg  
@@ -180,7 +164,7 @@ _ユーザ２（主に購入者）_
 ・AWS は SSL 認証の設定を行っていません。「http」にてアクセスしてください。
 
 ・AWS へのデプロイは以下を使用しています。  
-_CicleCi_  
+CicleCi  
 　　プロジェクト名：coachtech
 
 ・メールの確認には mailtrap を使用しています。  
