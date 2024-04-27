@@ -11,7 +11,7 @@ executors:
       - image: cimg/mysql:8.0
         environment:
           DB_HOST: mysql
-          DB_CONNECTION: mysql_test
+          DB_CONNECTION: mysql
           MYSQL_DATABASE: "demo_test"
           MYSQL_USER: "test"
           MYSQL_ROOT_PASSWORD: "password"
