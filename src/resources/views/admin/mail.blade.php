@@ -20,13 +20,11 @@
     <h2 class="admin__header">管理者画面</h2>
 </div>
 <div class="mail">
-    <div class="mail__flex">
-        <div class="back__link">
-            <a href="/admin" class="back__top">TOPへ戻る</a>
-        </div>
-        <div class="mail__ttl">
-            <h3 class="mail__header">メール送信</h3>
-        </div>
+    <div class="back__link">
+        <a href="/admin" class="back__top">TOPへ戻る</a>
+    </div>
+    <div class="mail__ttl">
+        <h3 class="mail__header">メール送信</h3>
     </div>
     <div class="mail__send">
         <form class="mail__form" action="/admin/mail/execute" method="post">

@@ -1,6 +1,5 @@
 @media screen and (min-width: 769px) {
     body {
-        height: 550px;
         font-family: "游ゴシック", "arial unicode ms", sans-serif;
     }
 
@@ -123,7 +122,6 @@
 
 @media screen and (max-width: 768px) {
     body {
-        height: 550px;
         font-family: "游ゴシック", "arial unicode ms", sans-serif;
     }
 

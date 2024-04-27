@@ -14,10 +14,10 @@
     }
 
     .result__content {
-        width: 400px;
         height: 250px;
         margin: auto;
-        padding: 40px;
+        margin-top: 50px;
+        padding-top: 90px;
         background-color: #fff;
         border-radius: 5px;
     }
@@ -67,11 +67,10 @@
     }
 
     .result__content {
-        width: 250px;
         height: 180px;
         margin: auto;
         margin-top: 20px;
-        padding: 40px;
+        padding-top: 90px;
         background-color: #fff;
         border-radius: 5px;
     }

@@ -14,21 +14,17 @@
     }
 
     .admin {
-        margin-top: 80px;
+        margin-top: 70px;
         margin-left: 30px;
     }
 
     .admin__header {
-        margin-top: 10px;
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
 
     .comment {
         margin-left: 30px;
-    }
-
-    .comment__flex {
-        display: flex;
-        margin-bottom: 10px;
     }
 
     .back__link {
@@ -49,7 +45,7 @@
     }
 
     .comment__ttl {
-        margin-left: 33%;
+        text-align: center;
     }
 
     .comment__header {
@@ -77,7 +73,7 @@
 
     .comment-table__row {
         border-bottom: 1px solid #a5a2a2;
-        height: 50px;
+        height: 45px;
     }
 
     .comment-table__item {

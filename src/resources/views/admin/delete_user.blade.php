@@ -20,13 +20,11 @@
     <h2 class="admin__header">管理者画面</h2>
 </div>
 <div class="user">
-    <div class="user__flex">
-        <div class="back__link">
-            <a href="/admin" class="back__top">TOPへ戻る</a>
-        </div>
-        <div class="user__ttl">
-            <h3 class="user__header">ユーザー一覧</h3>
-        </div>
+    <div class="back__link">
+        <a href="/admin" class="back__top">TOPへ戻る</a>
+    </div>
+    <div class="user__ttl">
+        <h3 class="user__header">ユーザー一覧</h3>
     </div>
     @if (session('user_message'))
     <div class="user-delete__success">

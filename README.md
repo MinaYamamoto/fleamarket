@@ -47,6 +47,8 @@ AWS 　 S3
 
 ・商品コメント追加機能
 
+・商品コメント削除機能
+
 ・商品配送先変更機能
 
 ・商品購入機能（カード決済、コンビニ決済、銀行決済）
@@ -118,22 +120,37 @@ MAIL_PASSWORD=mailtrip の SMTP Settings タブより設定値をコピー
 MAIL_ENCRYPTION=mailtrip の SMTP Settings タブより設定値をコピー  
 MAIL_FROM_ADDRESS=mailtrip の SMTP Settings タブより設定値をコピー  
 STRIPE_KEY=stripe の公開可能キー  
-STRIPE_SECRET=stripe のシークレットキー  
-STRIPE_BASIC_ID=stripe にて任意の商品カタログの APIID
+STRIPE_SECRET=stripe のシークレットキー
 
-5.アプリケーション起動のためのキーを生成  
+5.「.env」ファイルをコピーして「.env.testing」ファイルを作成  
+cp .env .env.testing
+
+6.「.env.testing」ファイルの環境変数を変更  
+DB_DATABASE=demo_test  
+DB_USERNAME=root  
+DB_PASSWORD=root
+
+7.「.env」ファイルをコピーして「.env.ci」ファイルを作成  
+cp .env .env.ci
+
+8.「.env.ci」ファイルの環境変数を変更  
+DB_DATABASE=demo_test  
+DB_USERNAME=test  
+DB_PASSWORD=password
+
+9.アプリケーション起動のためのキーを生成  
 php artisan key:generate
 
-6.マイグレーションを実行  
+10.マイグレーションを実行  
 php artisan migrate
 
-7.データベースへテスト用の初期データを投入  
+11.データベースへテスト用の初期データを投入  
 php artisan db:seed
 
-8.シンボリックリンクを作成  
+12.シンボリックリンクを作成  
 php artisan storage:link
 
-9.「fleamarket」配下にある以下ファイルを storage>app>public フォルダに格納  
+13.「fleamarket」配下にある以下ファイルを storage>app>public フォルダに格納  
 　 ai-generated-8674235_1280.png  
 　 checkmate-1511866_1280.jpg  
 　 clover-8108105_1280.jpg  

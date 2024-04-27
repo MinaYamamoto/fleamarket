@@ -14,17 +14,13 @@
     }
 
     .admin {
-        margin-top: 80px;
+        margin-top: 70px;
         margin-left: 30px;
     }
 
     .admin__header {
-        margin-top: 10px;
-    }
-
-    .mail__flex {
-        display: flex;
-        margin-top: 30px;
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
 
     .back__link {
@@ -45,7 +41,7 @@
     }
 
     .mail__ttl {
-        margin-left: 33%;
+        text-align: center;
     }
 
     .mail__header {

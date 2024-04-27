@@ -20,13 +20,11 @@
     <h2 class="admin__header">管理者画面</h2>
 </div>
 <div class="comment">
-    <div class="comment__flex">
-        <div class="back__link">
-            <a href="/admin" class="back__top">TOPへ戻る</a>
-        </div>
-        <div class="comment__ttl">
-            <h3 class="comment__header">コメント一覧</h3>
-        </div>
+    <div class="back__link">
+        <a href="/admin" class="back__top">TOPへ戻る</a>
+    </div>
+    <div class="comment__ttl">
+        <h3 class="comment__header">コメント一覧</h3>
     </div>
     @if (session('comment_message'))
     <div class="comment-delete__success">

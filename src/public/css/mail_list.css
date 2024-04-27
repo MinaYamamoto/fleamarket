@@ -14,20 +14,17 @@
     }
 
     .admin {
-        margin-top: 80px;
+        margin-top: 70px;
         margin-left: 30px;
     }
 
     .admin__header {
-        margin-top: 10px;
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
 
     .mail-list {
         margin-left: 30px;
-    }
-
-    .mail-list__flex {
-        display: flex;
     }
 
     .back__link {
@@ -48,7 +45,7 @@
     }
 
     .mail-list__ttl {
-        margin-left: 30%;
+        text-align: center;
     }
 
     .mail-list__header {
