@@ -150,7 +150,7 @@ php artisan db:seed
 12.シンボリックリンクを作成  
 php artisan storage:link
 
-13.「fleamarket」配下にある以下ファイルを storage>app>public フォルダに格納  
+13.fleamarket>img_public 配下にある以下ファイルを storage>app>public フォルダに格納  
 　 ai-generated-8674235_1280.png  
 　 checkmate-1511866_1280.jpg  
 　 clover-8108105_1280.jpg  
