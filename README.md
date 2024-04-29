@@ -167,10 +167,13 @@ _ユーザ２（主に購入者）_
 CicleCi  
 　　プロジェクト名：coachtech
 
-・メールの確認には mailtrap を使用しています。  
+・ローカル環境のメールの確認には mailtrap を使用しています。  
 　　 URL：https://mailtrap.io/email-sandbox/  
 　　環境構築前にログインし、メール設定に必要な情報を確認してください。
 
+・本番環境のメール確認には MailCatcher を使用しています。  
+　　 URL：http://35.74.207.200:1080/
+
 ・決済には stripe を使用しています。  
 　　 URL：https://dashboard.stripe.com/  
-　　環境構築前にログインし、メール設定に必要な情報を確認してください。
+　　環境構築前にログインし、stripe 設定に必要な情報を確認してください。
