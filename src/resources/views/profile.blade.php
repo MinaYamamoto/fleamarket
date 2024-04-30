@@ -43,7 +43,7 @@
             </div>
             <div class="img__button">
                 <label for="file-input" class="profile__file-input">画像を選択する</label>
-                <input type="file" id ="file-input" name="profile_image" class="profile__file" value="{{ Session::get('pforile_image') }}"/>
+                <input type="file" id="file-input" name="profile_image" class="profile__file" value="{{ Session::get('pforile_image') }}"/>
             </div>
             <div class="form__error">
                 @error('profile_image')

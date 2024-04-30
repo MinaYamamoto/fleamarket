@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <title>フリマアプリ</title>
     <link rel="stylesheet" href="{{ asset('css/sell.css') }}">
 </head>
+
 <body>
     <header class="header">
         <div class="header__inner"></div>
@@ -23,21 +25,21 @@
                     <div class="form-group__content-img" id="imagePreview" hidden>
                         <img id="sellImage" class="sell__img"></img>
                     </div>
-                        <div class="sell__img-ttl">
-                            <label class="sell__img-heading">商品画像</label>
-                        </div>
-                        <div class="sell__line">
-                            <div class="sell__img-update">
-                                <label for="file-input" class="sell__file-input">画像を選択する</label>
+                    <div class="sell__img-ttl">
+                        <label class="sell__img-heading">商品画像</label>
+                    </div>
+                    <div class="sell__line">
+                        <div class="sell__img-update">
+                            <label for="file-input" class="sell__file-input">画像を選択する</label>
                                 <input type="file" id ="file-input" class="sell__file" multiple onchange="previewImage(event)" value="{{ Session::get('image') }}" name="image"/>
-                            </div>
-                        </div>
-                        <div class="form__error">
-                            @error('image')
-                            {{ $message }}
-                            @enderror
                         </div>
                     </div>
+                    <div class="form__error">
+                        @error('image')
+                        {{ $message }}
+                        @enderror
+                    </div>
+                </div>
                 <div class="item__detail">
                     <div class="item__detail-ttl">
                         <h2 class="item__detail-heading">商品の詳細</h2>
@@ -147,4 +149,5 @@
         <script src="{{ mix('js/sell.js')}}"></script>
     </main>
 </body>
+
 </html>

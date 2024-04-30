@@ -42,7 +42,7 @@
                 <td class="comment-table__item">{{$comment->user->name}}</td>
                 <td class="comment-table__item">{{$comment->comment}}</td>
                 <td class="comment-table__item">
-                    <form action="/admin/comment/{{ $comment->id }}"class="delete-form" method="post">
+                    <form action="/admin/comment/{{ $comment->id }}" class="delete-form" method="post">
                         @method('DELETE')
                         @csrf
                         <div class="delete-form__button">

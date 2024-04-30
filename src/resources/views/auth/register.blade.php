@@ -43,8 +43,8 @@
             <input type="hidden" name="role" value="user">
         </div>
     </form>
-        <div class="form__link">
-            <a class="form__link__register" href="/login">ログインはこちら</a>
-        </div>
+    <div class="form__link">
+        <a class="form__link__register" href="/login">ログインはこちら</a>
+    </div>
 </div>
 @endsection

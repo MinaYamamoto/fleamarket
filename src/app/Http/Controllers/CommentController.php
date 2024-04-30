@@ -12,7 +12,8 @@ use App\Http\Requests\CommentRequest;
 
 class CommentController extends Controller
 {
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $item_id = $request->item_id;
         $item = Item::find($item_id);
         $mylists = Mylist::where('item_id', $request->item_id)->get();
@@ -30,13 +31,15 @@ class CommentController extends Controller
         return view('comment',compact('item','mylists','comments','profile'));
     }
 
-    public function store(CommentRequest $request) {
+    public function store(CommentRequest $request)
+    {
         $newComment = $request->only(['user_id', 'item_id', 'comment']);
         Comment::create($newComment);
         return back();
     }
 
-    public function destroy(Request $request) {
+    public function destroy(Request $request)
+    {
         $comment_id = $request->id;
         Comment::find($comment_id)->delete();
         return back();

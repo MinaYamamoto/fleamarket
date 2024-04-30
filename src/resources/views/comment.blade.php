@@ -34,7 +34,7 @@
 <div class="detail">
     <div class="detail__img">
         <div class="detail__inner">
-            <img class="detail__img-item"  src="{{ $item->image }}" alt="item">
+            <img class="detail__img-item" src="{{ $item->image }}" alt="item">
         </div>
     </div>
     <div class="detail__explanation">
@@ -109,7 +109,7 @@
                         <button class="comment-delete__button-submit" type="submit">
                             削除する
                         </button>
-                    <input type="hidden" name="id" value="{{$comment->id}}">
+                        <input type="hidden" name="id" value="{{$comment->id}}">
                     </div>
                 </form>
                 @endif
@@ -139,7 +139,7 @@
                         <button class="comment-delete__button-submit" type="submit">
                             削除する
                         </button>
-                    <input type="hidden" name="id" value="{{$comment->id}}">
+                        <input type="hidden" name="id" value="{{$comment->id}}">
                     </div>
                 </form>
                 @endif
@@ -150,7 +150,7 @@
             @endif
             @endforeach
         </div>
-        <form  action="/comment/{{$item['id']}}" method="post">
+        <form action="/comment/{{$item['id']}}" method="post">
             @csrf
             <div class="comment__post">
                 <h2 class="comment__post-heading">商品へのコメント</h2>

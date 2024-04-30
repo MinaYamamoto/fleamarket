@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +11,7 @@
     @livewireStyles
     @yield('stylesheet')
 </head>
+
 <body>
     <header class="header">
         <div class="header__inner">
@@ -33,11 +35,13 @@
                 </h1>
                 @endcan
                 @guest
+                <h1 class="header__logo-link">
                     @if(config('app.env')=== 'local')
                     <a href="/"><img class="header__logo-img" src="{{ Storage::url('logo.svg') }}" alt="logo"></a>
                     @elseif(config('app.env')=== 'production')
                     <a href="/"><img class="header__logo-img" src="{{ Storage::disk('s3')->url('logo.svg') }}" alt="logo"></a>
                     @endif
+                </h1>
                 @endguest
             </div>
             @yield('header')
@@ -50,4 +54,5 @@
     </main>
 
 </body>
+
 </html>

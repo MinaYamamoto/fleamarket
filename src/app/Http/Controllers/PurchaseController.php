@@ -38,7 +38,8 @@ class PurchaseController extends Controller
         return view('purchase', compact('item', 'post_code', 'profile', 'item_id', 'payment_method'));
     }
 
-    public function checkout(Request $request) {
+    public function checkout(Request $request)
+    {
         $payment_method = 'card';
         if(Session::has('payment_method')) {
             $payment_method = Session::get('payment_method');
@@ -92,7 +93,8 @@ class PurchaseController extends Controller
         return view('checkout', compact('session', 'item_id'));
     }
 
-    public function store() {
+    public function store()
+    {
         $user_id = Auth::id();
         $item_id = Session::get('item_id');
         $purchase['user_id'] = $user_id;

@@ -53,15 +53,15 @@
         <div class="card__item">
             <a href="/item/{{ $item->id }}"><img class="card__img" src="{{ $item->image }}" alt="item"></a>
         </div>
-            @if(is_null($item->purchase))
-            <div class="card__txt">
-                <p class="card__txt-price">&yen;{{ number_format($item->price) }}</p>
-            </div>
-            @else
-            <div class="card__txt">
-                <p class="card__txt-soldout">SOLDOUT</p>
-            </div>
-            @endif
+        @if(is_null($item->purchase))
+        <div class="card__txt">
+            <p class="card__txt-price">&yen;{{ number_format($item->price) }}</p>
+        </div>
+        @else
+        <div class="card__txt">
+            <p class="card__txt-soldout">SOLDOUT</p>
+        </div>
+        @endif
     </div>
     @endforeach
 </div>

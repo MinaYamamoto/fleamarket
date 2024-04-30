@@ -139,6 +139,7 @@
                 <div class="detail__condition-tags">
                     <span class="detail__condition-tag">{{$item['condition']['name']}}</span>
                 </div>
+            </div>
         </div>
     </div>
 </div>

@@ -1,4 +1,4 @@
-    @extends('layouts.app')
+@extends('layouts.app')
 
 @section('stylesheet')
 <link rel="stylesheet" href="{{ asset('css/purchase.css') }}">
@@ -52,7 +52,7 @@
                 <h2 class="pay__heading">支払い方法</h2>
             </div>
             <div class="pay__link">
-                <a href="/purchase/{{ $item->id }}/payment"class="pay-change__link" type="submit">変更する</a>
+                <a href="/purchase/{{ $item->id }}/payment" class="pay-change__link" type="submit">変更する</a>
             </div>
         </div>
         <div class="address__flex">
@@ -74,55 +74,55 @@
     </div>
     <div class="pay">
         <div class="line">
-    <form action="/checkout" method="post">
-    @csrf
-        <div class="pay__detail">
-            <div class="pay__detail-item">
-                <div class="pay__detail-ttl">
-                    <label class="pay__detail-label">商品代金</label>
+            <form action="/checkout" method="post">
+                @csrf
+                <div class="pay__detail">
+                    <div class="pay__detail-item">
+                        <div class="pay__detail-ttl">
+                            <label class="pay__detail-label">商品代金</label>
+                        </div>
+                        <div class="item__price">
+                            <span>&yen;{{number_format($item->price) }}</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="item__price">
-                    <span>&yen;{{number_format($item->price) }}</span>
+                <div class="pay__detail">
+                    <div class="pay__detail-item">
+                        <div class="pay__detail-ttl">
+                            <label class="pay__detail-label">支払い金額</label>
+                        </div>
+                        <div class="pay__price">
+                            <span>&yen;{{number_format($item->price) }}</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                <div class="pay__detail">
+                    <div class="pay__detail-item">
+                        <div class="pay__detail-ttl">
+                            <label class="pay__detail-label">支払い方法</label>
+                        </div>
+                        <div class="method__payment">
+                            @if($payment_method === 'card')
+                            <span>カード決済</span>
+                            @elseif($payment_method === 'konbini')
+                            <span>コンビニ決済</span>
+                            @elseif($payment_method === 'bank')
+                            <span>銀行決済</span>
+                            @endif
+                        </div>
+                    </div>
+                </div>
         </div>
-        <div class="pay__detail">
-            <div class="pay__detail-item">
-                <div class="pay__detail-ttl">
-                    <label class="pay__detail-label">支払い金額</label>
-                </div>
-                <div class="pay__price">
-                    <span>&yen;{{number_format($item->price) }}</span>
-                </div>
-            </div>
+        @if($profile->address === '住所未登録')
+        <div class="form__button">
+            <button class="form__button-inactive" disabled>購入する</button>
+            <p class="address-msg">配送先を登録してください</p>
         </div>
-        <div class="pay__detail">
-            <div class="pay__detail-item">
-                <div class="pay__detail-ttl">
-                    <label class="pay__detail-label">支払い方法</label>
-                </div>
-                <div class="method__payment">
-                    @if($payment_method === 'card')
-                    <span>カード決済</span>
-                    @elseif($payment_method === 'konbini')
-                    <span>コンビニ決済</span>
-                    @elseif($payment_method === 'bank')
-                    <span>銀行決済</span>
-                    @endif
-                </div>
-            </div>
+        @else
+        <div class="form__button">
+            <button class="form__button-submit" type="submit">購入する</button>
         </div>
-        </div>
-            @if($profile->address === '住所未登録')
-            <div class="form__button">
-                <button class="form__button-inactive" disabled>購入する</button>
-                <p class="address-msg">配送先を登録してください</p>
-            </div>
-            @else
-            <div class="form__button">
-                <button class="form__button-submit" type="submit">購入する</button>
-            </div>
-            @endif
+        @endif
         </form>
     </div>
 </div>

@@ -74,7 +74,7 @@
                 @enderror
             </div>
             <div class="form__button">
-                <button class="form__button-submit" name="submit" type="submit" >送信</button>
+                <button class="form__button-submit" name="submit" type="submit">送信</button>
             </div>
         </form>
     </div>
