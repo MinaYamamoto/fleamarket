@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,12 +10,17 @@
 </head>
 
 <body>
-    <div class="checkout">
-        <p class="checkout__txt">決済ページへリダイレクトします。</p>
-    </div>
-    <script src="https://js.stripe.com/v3/"></script>
-    <script>
-        const stripe_public_key = "{{ config('services.stripe.stripe_public_key') }}"
+    <header class="header">
+        <div class="header__inner"></div>
+    </header>
+
+    <main>
+        <div class="checkout">
+            <p class="checkout__txt">決済ページへリダイレクトします。</p>
+        </div>
+        <script src="https://js.stripe.com/v3/"></script>
+        <script>
+            const stripe_public_key = "{{ config('services.stripe.stripe_public_key') }}"
         const stripe = Stripe(stripe_public_key);
         window.onload = function() {
             stripe.redirectToCheckout({
@@ -23,6 +29,8 @@
                 history.back();
             });
         }
-    </script>
+        </script>
+    </main>
 </body>
+
 </html>
