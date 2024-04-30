@@ -3,14 +3,8 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Http\Request;
 use Tests\TestCase;
 use App\Models\User;
-use App\Models\Category;
-use App\Models\Content;
-use App\Models\CategoryContent;
-use App\Models\Condition;
 use App\Models\Item;
 use App\Models\Mylist;
 use Database\Seeders\CategoriesTableSeed;

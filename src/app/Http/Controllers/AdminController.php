@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Pagination\Paginator;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\User;
-use App\Http\Requests\MailRequest;
 
 class AdminController extends Controller
 {

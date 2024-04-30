@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\UploadedFile;
@@ -12,7 +11,6 @@ use App\Models\User;
 use App\Models\Category;
 use App\Models\Content;
 use App\Models\CategoryContent;
-use App\Models\Condition;
 use App\Models\Item;
 use App\Models\Purchase;
 use App\Http\Requests\ItemRequest;

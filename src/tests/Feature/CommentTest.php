@@ -3,14 +3,9 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Validator;
 use Tests\TestCase;
 use App\Models\User;
-use App\Models\Category;
-use App\Models\Content;
-use App\Models\CategoryContent;
-use App\Models\Condition;
 use App\Models\Item;
 use App\Models\Comment;
 use App\Models\Profile;

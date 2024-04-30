@@ -9,7 +9,7 @@ use App\Http\Requests\MailRequest;
 
 class MailController extends Controller
 {
-    public function index(Request $request)
+    public function form(Request $request)
     {
         $user_name = $request->user_name;
         $user_email = $request->user_email;
